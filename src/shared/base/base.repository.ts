@@ -14,9 +14,9 @@ export interface BaseEntity {
 
 export interface DatabaseContext {
   db: any; // Ponder DB instance
-  network: {
-    chainId: number;
-    name: string;
+  network?: {
+    chainId?: number;
+    name?: string;
   };
 }
 
@@ -38,9 +38,10 @@ export abstract class BaseRepository<T extends BaseEntity> {
 
   /**
    * Get current chain ID
+   * Defaults to 31337 (anvil) if not available in context
    */
   protected get chainId(): number {
-    return this.context.network.chainId;
+    return this.context.network?.chainId || 31337;
   }
 
   /**

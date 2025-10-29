@@ -50,22 +50,26 @@ export async function handleListingCancelled({
       network: context.network,
     });
 
-    // Prepare event data
+    // Prepare event data - matches actual ListingCancelled event structure
     const eventData: ListingCancelledData = {
       listingId: args.listingId,
-      reason: "User cancelled", // Default reason
+      contractAddress: args.contractAddress,
+      tokenId: args.tokenId.toString(),
+      seller: args.seller,
     };
 
     // Validate with Zod schema
     const validatedData = validateEventData("listing_cancelled", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first
     const eventResult = await eventRepo.createEvent({
       eventType: "listing_cancelled",
       category: "listing",
       actor: args.seller,
+      collection: args.contractAddress,
+      tokenId: args.tokenId.toString(),
       data: validatedData,
-      contractName: "Marketplace",
+      contractName: "NFTExchange",
       event,
     });
 
@@ -73,21 +77,17 @@ export async function handleListingCancelled({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Update account aggregate (projection)
-    await accountRepo.getOrCreate(args.seller, event.block.timestamp);
-    await accountRepo.updateActivity(args.seller, event.block.timestamp);
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.seller, event.block.timestamp),
+      accountRepo.incrementActivity(args.seller, event.block.timestamp),
+    ]);
 
-    // Note: In v3.0 schema, listing status is derived from events:
-    // Active listings = listing_created events WITHOUT listing_cancelled/listing_filled events
-    // Query example:
-    // SELECT * FROM event WHERE eventType = 'listing_created'
-    //   AND NOT EXISTS (SELECT 1 FROM event e2
-    //     WHERE e2.eventType IN ('listing_cancelled', 'listing_filled')
-    //     AND JSON_EXTRACT(e2.data, '$.listingId') = JSON_EXTRACT(event.data, '$.listingId'))
-
-    logger.logEventSuccess("NFTUnlisted", {
+    logger.logEventSuccess("ListingCancelled", {
       listingId: args.listingId,
       seller: args.seller,
+      contractAddress: args.contractAddress,
+      tokenId: args.tokenId.toString(),
     });
   } catch (error) {
     logger.logEventError("NFTUnlisted", error as Error, { args });

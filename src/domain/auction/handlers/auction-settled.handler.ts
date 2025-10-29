@@ -16,7 +16,6 @@ import { normalizeAddress } from "@/shared/utils/helpers";
 import {
   AccountRepository,
   EventRepository,
-  TradeRepository,
 } from "@/repositories";
 import {
   validateEventData,
@@ -72,10 +71,6 @@ export async function handleAuctionSettled({
       db: context.db,
       network: context.network,
     });
-    const tradeRepo = new TradeRepository({
-      db: context.db,
-      network: context.network,
-    });
 
     // Prepare event data
     const eventData: AuctionSettledData = {
@@ -88,7 +83,7 @@ export async function handleAuctionSettled({
     // Validate with Zod schema
     const validatedData = validateEventData("auction_settled", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first approach
     const eventResult = await eventRepo.createEvent({
       eventType: "auction_settled",
       category: "auction",
@@ -105,38 +100,12 @@ export async function handleAuctionSettled({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Create trade record (projection from event)
-    await tradeRepo.createTrade({
-      maker: args.seller,
-      taker: args.winner,
-      collection: args.nftContract,
-      tokenId: args.tokenId.toString(),
-      tokenType: "ERC721", // Default, could be detected
-      amount: "1",
-      price: args.finalPrice.toString(),
-      paymentToken: "0x0000000000000000000000000000000000000000", // Native token
-      makerFee: "0",
-      takerFee: "0",
-      royaltyFee: "0",
-      royaltyRecipient: null,
-      tradeType: "auction",
-      sourceEventId: eventResult.data.id,
-      blockNumber: event.block.number,
-      blockTimestamp: event.block.timestamp,
-      transactionHash: event.transaction.hash,
-      logIndex: event.log.logIndex,
-      chainId: context.network.chainId,
-    });
-
-    // Update account aggregates (projections)
-    const volume = BigInt(args.finalPrice);
+    // Update basic account cache only - v4.0 simplified approach
     await Promise.all([
       accountRepo.getOrCreate(args.winner, event.block.timestamp),
       accountRepo.getOrCreate(args.seller, event.block.timestamp),
-      accountRepo.incrementTrades(args.seller, true, volume), // Maker
-      accountRepo.incrementTrades(args.winner, false, volume), // Taker
-      accountRepo.updateActivity(args.winner, event.block.timestamp),
-      accountRepo.updateActivity(args.seller, event.block.timestamp),
+      accountRepo.incrementActivity(args.winner, event.block.timestamp),
+      accountRepo.incrementActivity(args.seller, event.block.timestamp),
     ]);
 
     logger.logEventSuccess("AuctionSettled", {

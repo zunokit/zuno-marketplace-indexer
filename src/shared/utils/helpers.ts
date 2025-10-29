@@ -271,3 +271,35 @@ export function safeJsonStringify(obj: any, fallback: string = '{}'): string {
   }
 }
 
+/**
+ * Recursively convert all BigInt values to strings for JSON serialization
+ * Handles nested objects, arrays, and null/undefined values
+ */
+export function serializeBigInts<T>(obj: T): T {
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+
+  // Handle BigInt
+  if (typeof obj === 'bigint') {
+    return String(obj) as T;
+  }
+
+  // Handle arrays
+  if (Array.isArray(obj)) {
+    return obj.map(item => serializeBigInts(item)) as T;
+  }
+
+  // Handle objects
+  if (typeof obj === 'object') {
+    const serialized: any = {};
+    for (const [key, value] of Object.entries(obj)) {
+      serialized[key] = serializeBigInts(value);
+    }
+    return serialized as T;
+  }
+
+  // Return primitives as-is
+  return obj;
+}
+

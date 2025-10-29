@@ -37,34 +37,34 @@ export async function handleListingCreated({
   try {
     const accountRepo = new AccountRepository({
       db: context.db,
-      network: context.network,
+      network: context.network, // May be undefined, repository will use default
     });
     const eventRepo = new EventRepository({
       db: context.db,
-      network: context.network,
+      network: context.network, // May be undefined, repository will use default
     });
 
-    // Prepare event data
+    // Prepare event data - matches actual NFTListed event structure
     const eventData: ListingCreatedData = {
       listingId: args.listingId,
+      contractAddress: args.contractAddress,
+      tokenId: args.tokenId.toString(),
+      seller: args.seller,
       price: args.price.toString(),
-      paymentToken: args.paymentToken,
-      expiresAt: args.expiresAt,
-      amount: "1", // Default for single NFT listing
     };
 
     // Validate with Zod schema
     const validatedData = validateEventData("listing_created", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first
     const eventResult = await eventRepo.createEvent({
       eventType: "listing_created",
       category: "listing",
       actor: args.seller,
-      collection: args.nftContract,
+      collection: args.contractAddress,
       tokenId: args.tokenId.toString(),
       data: validatedData,
-      contractName: "Marketplace",
+      contractName: "NFTExchange",
       event,
     });
 
@@ -72,16 +72,17 @@ export async function handleListingCreated({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Get or create seller account
-    await accountRepo.getOrCreate(args.seller, event.block.timestamp);
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.seller, event.block.timestamp),
+      accountRepo.incrementActivity(args.seller, event.block.timestamp),
+    ]);
 
-    // Update account aggregate (projection)
-    await accountRepo.getOrCreate(args.seller, event.block.timestamp);
-    await accountRepo.updateActivity(args.seller, event.block.timestamp);
-    
     logger.logEventSuccess("NFTListed", {
       listingId: args.listingId,
       seller: args.seller,
+      contractAddress: args.contractAddress,
+      tokenId: args.tokenId.toString(),
       price: args.price.toString(),
     });
   } catch (error) {

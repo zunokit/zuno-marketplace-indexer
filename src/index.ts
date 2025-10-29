@@ -1,15 +1,17 @@
 /**
- * Zuno Marketplace Event Handlers Registry
- * Event-First Architecture with Domain-Driven Design
+ * Zuno Marketplace Event Handlers Registry - Senior Refactor v4.0
+ * Pure Event-Sourcing Architecture with Domain-Driven Design
  *
- * @version 3.0.0
- * @architecture Event Sourcing + Domain-Driven Design
- * @schema Event-first with aggregate projections
+ * @version 4.0.0
+ * @architecture Event-First + Domain-Driven Design
+ * @schema Pure event sourcing - no projections
+ * @author Senior Developer Refactor
  */
 
 import { registerCollectionHandlers } from "@/domain/collection";
 import { registerTradingHandlers } from "@/domain/trading";
 import { registerAuctionHandlers } from "@/domain/auction";
+import { registerOfferHandlers } from "@/domain/offer";
 
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
 import { getMetrics } from "@/infrastructure/monitoring/metrics";
@@ -19,9 +21,11 @@ const logger = getEventLogger();
 const metrics = getMetrics();
 const errorHandler = getErrorHandler();
 
+// Register all domain event handlers
 registerCollectionHandlers();
 registerTradingHandlers();
 registerAuctionHandlers();
+registerOfferHandlers(); // New offer domain handlers
 
 // ============================================================================
 // Development Monitoring

@@ -11,10 +11,9 @@
  * @module domain/collection/handlers/erc1155-created
  */
 
-import * as schema from "ponder:schema";
 import type { ERC1155CollectionCreatedEvent } from "@/shared/types/events";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
-import { generateCollectionId, normalizeAddress } from "@/shared/utils/helpers";
+import { normalizeAddress } from "@/shared/utils/helpers";
 import { AccountRepository, EventRepository } from "@/repositories";
 import {
   validateEventData,
@@ -44,7 +43,7 @@ export async function handleERC1155Created({
   );
 
   try {
-    // Initialize repositories
+    // Initialize repositories - v4.0 simplified
     const accountRepo = new AccountRepository({
       db: context.db,
       network: context.network,
@@ -54,7 +53,7 @@ export async function handleERC1155Created({
       network: context.network,
     });
 
-    // Prepare event data
+    // Prepare event data - v4.0 event-first approach
     const eventData: CollectionCreatedData = {
       name: "ERC1155 Collection", // Default name for ERC1155
       symbol: "ERC1155",
@@ -64,7 +63,7 @@ export async function handleERC1155Created({
     // Validate with Zod schema
     const validatedData = validateEventData("collection_created", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first
     const eventResult = await eventRepo.createEvent({
       eventType: "collection_created",
       category: "collection",
@@ -79,47 +78,15 @@ export async function handleERC1155Created({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Create collection record (projection)
-    const collectionId = generateCollectionId(
-      context.network.chainId,
-      args.collectionAddress
-    );
-
-    await context.db.insert(schema.collection).values({
-      id: collectionId,
-      address: normalizeAddress(args.collectionAddress),
-      chainId: context.network.chainId,
-      name: "ERC1155 Collection",
-      symbol: "ERC1155",
-      tokenType: "ERC1155",
-      creator: normalizeAddress(args.creator),
-      owner: normalizeAddress(args.creator),
-      royaltyFee: 0,
-      royaltyRecipient: null,
-      maxSupply: null, // ERC1155 can have unlimited supply
-      totalSupply: "0",
-      totalMinted: "0",
-      totalBurned: "0",
-      totalTrades: 0,
-      totalVolume: "0",
-      floorPrice: null,
-      createdAt: event.block.timestamp,
-      lastMintAt: null,
-      lastTradeAt: null,
-      isVerified: false,
-      isActive: true,
-      deployBlockNumber: event.block.number,
-      deployTxHash: event.transaction.hash,
-    });
-
-    // Update account aggregate (projection)
-    await accountRepo.getOrCreate(args.creator, event.block.timestamp);
-    await accountRepo.incrementCollectionsCreated(args.creator);
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.creator, event.block.timestamp),
+      accountRepo.incrementActivity(args.creator, event.block.timestamp),
+    ]);
 
     logger.logEventSuccess("ERC1155CollectionCreated", {
       collection: args.collectionAddress,
       creator: args.creator,
-      uri: args.uri,
     });
   } catch (error) {
     logger.logEventError("ERC1155CollectionCreated", error as Error, { args });

@@ -52,32 +52,29 @@ export interface TransferBatchEvent {
 // Marketplace Trading Events
 // ============================================================================
 
+// NFTExchange Events
 export interface NFTListedEvent {
-  listingId: Hash;
-  nftContract: Address;
+  listingId: Hash; // bytes32
+  contractAddress: Address; // NFT contract address
   tokenId: bigint;
   seller: Address;
   price: bigint;
-  paymentToken: Address;
-  expiresAt: bigint;
 }
 
 export interface NFTUnlistedEvent {
   listingId: Hash;
+  contractAddress: Address;
+  tokenId: bigint;
   seller: Address;
 }
 
 export interface NFTPurchasedEvent {
-  listingId: Hash;
-  nftContract: Address;
+  listingId: Hash; // bytes32
+  contractAddress: Address; // NFT contract address
   tokenId: bigint;
   seller: Address;
   buyer: Address;
   price: bigint;
-  paymentToken: Address;
-  platformFee: bigint;
-  royaltyFee: bigint;
-  royaltyRecipient: Address;
 }
 
 export interface OrderFulfilledEvent {
@@ -97,13 +94,6 @@ export interface OrderCreatedEvent {
   nftContract: Address;
   tokenId: bigint;
   price: bigint;
-  paymentToken: Address;
-  expirationTime: bigint;
-}
-
-export interface OrderCancelledEvent {
-  orderHash: Hash;
-  maker: Address;
 }
 
 // ============================================================================
@@ -147,19 +137,43 @@ export interface AuctionCancelledEvent {
   seller: Address;
 }
 
+export interface AuctionSettledEvent {
+  auctionId: Hash;
+  winner: Address;
+  seller: Address;
+  finalPrice: bigint;
+  protocolFee: bigint;
+  royaltiesEarned: bigint;
+  collection: Address;
+  tokenId: bigint;
+  auctionType: string;
+}
+
 // ============================================================================
 // Offer Events
 // ============================================================================
 
 export interface OfferCreatedEvent {
   offerId: Hash;
-  nftContract: Address;
-  tokenId: bigint;
   offerer: Address;
-  nftOwner?: Address;
-  offerPrice: bigint;
-  paymentToken?: Address;
-  expirationTime: bigint;
+  collection: Address;
+  tokenId: bigint;
+  amount: bigint;
+  offerType: number; // enum OfferManager.OfferType (0=NFT, 1=Collection, 2=Trait)
+}
+
+export interface OfferAcceptedEvent {
+  offerId: Hash;
+  accepter: Address; // Note: contract emits "accepter" not "acceptor"
+  collection: Address;
+  tokenId: bigint;
+  amount: bigint;
+}
+
+export interface OfferCancelledEvent {
+  offerId: Hash;
+  offerer: Address;
+  reason: string;
 }
 
 export interface OfferMadeEvent {
@@ -172,20 +186,13 @@ export interface OfferMadeEvent {
   expirationTime: bigint;
 }
 
-export interface OfferAcceptedEvent {
-  offerId: Hash;
-  nftContract: Address;
-  tokenId: bigint;
-  offerer: Address;
-  seller: Address;
-  offerPrice: bigint;
-  offerAmount?: bigint;
-  paymentToken?: Address;
-}
+// ============================================================================
+// Order Events
+// ============================================================================
 
-export interface OfferCancelledEvent {
-  offerId: Hash;
-  offerer: Address;
+export interface OrderCancelledEvent {
+  orderHash: Hash;
+  maker: Address;
 }
 
 // ============================================================================
@@ -209,18 +216,39 @@ export interface PlatformFeeUpdatedEvent {
 // ============================================================================
 
 export interface BundleCreatedEvent {
-  bundleId: bigint;
-  creator: Address;
-  nftContracts: Address[];
-  tokenIds: bigint[];
-  price: bigint;
+  bundleId: Hash; // bytes32 bundle ID
+  creator: Address; // Bundle creator
+  bundleType: string; // Type of bundle (nft/erc1155)
+  tokenIds: Address[]; // Token identifiers (address array)
+  bundleSize: number; // Number of tokens in bundle
+  totalPrice: bigint; // Total price in wei
+  metadata: object; // Bundle metadata (name, description, images, etc.)
+  timestamp: bigint; // Creation timestamp
 }
 
 export interface BundlePurchasedEvent {
-  bundleId: bigint;
-  buyer: Address;
-  seller: Address;
-  price: bigint;
+  bundleId: Hash; // Bundle ID
+  buyer: Address; // Bundle buyer
+  seller: Address; // Bundle seller
+  totalPrice: bigint; // Total bundle price
+  paymentToken: Address; // Payment token address
+  bundleType: string; // Bundle type
+  bundleSize: number; // Token count
+  timestamp: bigint; // Timestamp
+}
+
+export interface BundleDissolvedEvent {
+  bundleId: Hash; // Bundle ID
+  creator: Address; // Bundle creator
+  reason: string; // Dissolution reason
+  timestamp: bigint; // Dissolution timestamp
+}
+
+export interface BundleUpdatedEvent {
+  bundleId: Hash; // Bundle ID
+  creator: Address; // Bundle creator
+  updates: object; // Changed fields
+  timestamp: bigint; // Update timestamp
 }
 
 // ============================================================================
@@ -241,15 +269,20 @@ export type MarketplaceEvent =
   | { type: "OrderCancelled"; args: OrderCancelledEvent }
   | { type: "AuctionCreated"; args: AuctionCreatedEvent }
   | { type: "BidPlaced"; args: BidPlacedEvent }
+  | { type: "AuctionFinalized"; args: AuctionFinalizedEvent }
   | { type: "AuctionEnded"; args: AuctionEndedEvent }
   | { type: "AuctionCancelled"; args: AuctionCancelledEvent }
+  | { type: "AuctionSettled"; args: AuctionSettledEvent }
+  | { type: "OfferCreated"; args: OfferCreatedEvent }
   | { type: "OfferMade"; args: OfferMadeEvent }
   | { type: "OfferAccepted"; args: OfferAcceptedEvent }
   | { type: "OfferCancelled"; args: OfferCancelledEvent }
   | { type: "RoyaltyPaid"; args: RoyaltyPaidEvent }
   | { type: "PlatformFeeUpdated"; args: PlatformFeeUpdatedEvent }
   | { type: "BundleCreated"; args: BundleCreatedEvent }
-  | { type: "BundlePurchased"; args: BundlePurchasedEvent };
+  | { type: "BundlePurchased"; args: BundlePurchasedEvent }
+  | { type: "BundleDissolved"; args: BundleDissolvedEvent }
+  | { type: "BundleUpdated"; args: BundleUpdatedEvent };
 
 // ============================================================================
 // Event Handler Context

@@ -3,17 +3,11 @@
  * Handles single NFT minting events from collections
  */
 
-import * as schema from "ponder:schema";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
-import {
-  generateTokenId,
-  normalizeAddress,
-} from "@/shared/utils/helpers";
+import { normalizeAddress } from "@/shared/utils/helpers";
 import {
   AccountRepository,
-  CollectionRepository,
   EventRepository,
-  TokenRepository,
 } from "@/repositories";
 import {
   validateEventData,
@@ -52,16 +46,8 @@ export async function handleNFTMinted({
   );
 
   try {
-    // Initialize repositories
+    // Initialize repositories - v4.0 simplified
     const accountRepo = new AccountRepository({
-      db: context.db,
-      network: context.network,
-    });
-    const collectionRepo = new CollectionRepository({
-      db: context.db,
-      network: context.network,
-    });
-    const tokenRepo = new TokenRepository({
       db: context.db,
       network: context.network,
     });
@@ -80,7 +66,7 @@ export async function handleNFTMinted({
     // Validate with Zod schema
     const validatedData = validateEventData("nft_minted", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first approach
     const eventResult = await eventRepo.createEvent({
       eventType: "nft_minted",
       category: "mint",
@@ -96,68 +82,11 @@ export async function handleNFTMinted({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Get or create minter account
-    await accountRepo.getOrCreate(args.to, event.block.timestamp);
-
-    // Determine token type by checking collection
-    const collectionId = `${context.network.chainId}:${contractAddress}`;
-    const collectionResult = await collectionRepo.findById(collectionId);
-
-    let tokenType = "ERC721"; // Default
-    if (collectionResult.success && collectionResult.data) {
-      tokenType = collectionResult.data.tokenType;
-    }
-
-    // Create token record
-    const tokenId = generateTokenId(
-      context.network.chainId,
-      contractAddress,
-      args.tokenId.toString()
-    );
-
-    const tokenExists = await tokenRepo.findById(tokenId);
-
-    if (!tokenExists.success || !tokenExists.data) {
-      // Create new token with mint tracking
-      await context.db.insert(schema.token).values({
-        id: tokenId,
-        collection: normalizeAddress(contractAddress),
-        tokenId: args.tokenId.toString(),
-        chainId: context.network.chainId,
-        owner: normalizeAddress(args.to),
-        minter: normalizeAddress(args.to),
-        tokenUri: null,
-        metadataUri: null,
-        totalSupply: args.amount.toString(),
-        tradeCount: 0,
-        lastSalePrice: null,
-        lastSaleToken: null,
-        isBurned: false,
-        mintedAt: event.block.timestamp,
-        lastTransferAt: event.block.timestamp,
-        lastSaleTimestamp: null,
-        mintBlockNumber: event.block.number,
-        mintTxHash: event.transaction.hash,
-      });
-
-      // Token created successfully
-    }
-
-    // Update collection statistics
-    if (collectionResult.success && collectionResult.data) {
-      const collection = collectionResult.data;
-      const newTotalMinted = BigInt(collection.totalMinted) + args.amount;
-      const newTotalSupply = BigInt(collection.totalSupply) + args.amount;
-
-      await context.db.update(schema.collection, { id: collectionId }).set({
-        totalMinted: newTotalMinted.toString(),
-        totalSupply: newTotalSupply.toString(),
-        lastMintAt: event.block.timestamp,
-      });
-    }
-
-    // Update account mint statistics
-    await accountRepo.incrementMints(args.to, Number(args.amount));
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.to, event.block.timestamp),
+      accountRepo.incrementActivity(args.to, event.block.timestamp),
+    ]);
 
     logger.logEventSuccess("Minted", {
       collection: contractAddress,

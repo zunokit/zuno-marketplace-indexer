@@ -10,12 +10,10 @@
  * @module domain/collection/handlers/batch-minted
  */
 
-import * as schema from "ponder:schema";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
 import { normalizeAddress } from "@/shared/utils/helpers";
 import {
   AccountRepository,
-  CollectionRepository,
   EventRepository,
 } from "@/repositories";
 import {
@@ -55,12 +53,8 @@ export async function handleBatchMinted({
   );
 
   try {
-    // Initialize repositories
+    // Initialize repositories - v4.0 simplified
     const accountRepo = new AccountRepository({
-      db: context.db,
-      network: context.network,
-    });
-    const collectionRepo = new CollectionRepository({
       db: context.db,
       network: context.network,
     });
@@ -79,7 +73,7 @@ export async function handleBatchMinted({
     // Validate with Zod schema
     const validatedData = validateEventData("batch_minted", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first approach
     const eventResult = await eventRepo.createEvent({
       eventType: "batch_minted",
       category: "mint",
@@ -94,28 +88,11 @@ export async function handleBatchMinted({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Get or create minter account
-    await accountRepo.getOrCreate(args.to, event.block.timestamp);
-
-    // Update collection statistics
-    const collectionId = `${context.network.chainId}:${contractAddress}`;
-    const collectionResult = await collectionRepo.findById(collectionId);
-
-    if (collectionResult.success && collectionResult.data) {
-      const collection = collectionResult.data;
-      const totalMinted = BigInt(args.tokenIds.length);
-      const newTotalMinted = BigInt(collection.totalMinted) + totalMinted;
-      const newTotalSupply = BigInt(collection.totalSupply) + totalMinted;
-
-      await context.db.update(schema.collection, { id: collectionId }).set({
-        totalMinted: newTotalMinted.toString(),
-        totalSupply: newTotalSupply.toString(),
-        lastMintAt: event.block.timestamp,
-      });
-    }
-
-    // Update account mint statistics
-    await accountRepo.incrementMints(args.to, args.tokenIds.length);
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.to, event.block.timestamp),
+      accountRepo.incrementActivity(args.to, event.block.timestamp),
+    ]);
 
     logger.logEventSuccess("BatchMinted", {
       collection: contractAddress,

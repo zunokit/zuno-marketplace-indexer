@@ -150,6 +150,7 @@ function generateChainsConfig(chains: Record<string, any>): string {
     
     // Use maxRequestsPerSecond (not maxRpcRequestsPerSecond)
     props.push(`      maxRequestsPerSecond: ${chain.maxRpcRequestsPerSecond || 100}`);
+    props.push(`      disableCache: ${chain.disableCache || true}`);
     
     return `    ${name}: {\n${props.join(',\n')}\n    }`;
   }).join(',\n');
@@ -265,6 +266,6 @@ function displayNextSteps(): void {
 // ============================================================================
 
 // Run if called directly
-generateConfig();
+generateConfig().catch(console.error);
 
 

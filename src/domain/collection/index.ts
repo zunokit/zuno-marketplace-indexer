@@ -30,17 +30,6 @@ export function registerCollectionHandlers() {
     wrapHandler("ERC1155CollectionCreated", handleERC1155Created)
   );
 
-  // Collection Factory Registry
-  ponder.on(
-    "collectionfactoryregistry_anvil:ERC721CollectionCreated",
-    wrapHandler("ERC721CollectionCreated", handleERC721Created)
-  );
-
-  ponder.on(
-    "collectionfactoryregistry_anvil:ERC1155CollectionCreated",
-    wrapHandler("ERC1155CollectionCreated", handleERC1155Created)
-  );
-
   // ============================================================================
   // Minting Events (from individual collection contracts)
   // ============================================================================

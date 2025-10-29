@@ -2,10 +2,9 @@
  * ERC721 Collection Created Handler
  */
 
-import * as schema from "ponder:schema";
 import type { ERC721CollectionCreatedEvent } from "@/shared/types/events";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
-import { generateCollectionId, normalizeAddress } from "@/shared/utils/helpers";
+import { normalizeAddress } from "@/shared/utils/helpers";
 import { AccountRepository, EventRepository } from "@/repositories";
 import {
   validateEventData,
@@ -37,7 +36,7 @@ export async function handleERC721Created({
   );
 
   try {
-    // Initialize repositories
+    // Initialize repositories - v4.0 simplified
     const accountRepo = new AccountRepository({
       db: context.db,
       network: context.network,
@@ -47,19 +46,19 @@ export async function handleERC721Created({
       network: context.network,
     });
 
-    // Prepare event data with fallbacks since contract only emits collectionAddress and creator
-    // Name and symbol need to be fetched from the contract or set as defaults
+    // Prepare event data - v4.0 event-first approach
+    // Note: Event only has collectionAddress and creator
     const eventData: CollectionCreatedData = {
-      name: "ERC721 Collection", // Default name - could be fetched from contract
-      symbol: "ERC721", // Default symbol - could be fetched from contract
+      name: "ERC721 Collection", // Default - could be fetched via RPC
+      symbol: "ERC721", // Default - could be fetched via RPC
       tokenType: "ERC721",
-      maxSupply: undefined, // Not available in event
+      maxSupply: undefined,
     };
 
     // Validate with Zod schema
     const validatedData = validateEventData("collection_created", eventData);
 
-    // Create event record (source of truth)
+    // Create event record (source of truth) - v4.0 event-first
     const eventResult = await eventRepo.createEvent({
       eventType: "collection_created",
       category: "collection",
@@ -74,50 +73,15 @@ export async function handleERC721Created({
       throw new Error(`Failed to create event: ${eventResult.error?.message}`);
     }
 
-    // Create or get account
-    await accountRepo.getOrCreate(args.creator, event.block.timestamp);
-
-    // Create collection record
-    const collectionId = generateCollectionId(
-      context.network.chainId,
-      args.collectionAddress
-    );
-
-    await context.db.insert(schema.collection).values({
-      id: collectionId,
-      address: normalizeAddress(args.collectionAddress),
-      chainId: context.network.chainId,
-      name: args.name || null,
-      symbol: args.symbol || null,
-      tokenType: "ERC721",
-      creator: normalizeAddress(args.creator),
-      owner: normalizeAddress(args.creator),
-      royaltyFee: 0,
-      royaltyRecipient: null,
-      maxSupply: args.maxSupply?.toString() || null,
-      totalSupply: "0",
-      totalMinted: "0",
-      totalBurned: "0",
-      totalTrades: 0,
-      totalVolume: "0",
-      floorPrice: null,
-      createdAt: event.block.timestamp,
-      lastMintAt: null,
-      lastTradeAt: null,
-      isVerified: false,
-      isActive: true,
-      deployBlockNumber: event.block.number,
-      deployTxHash: event.transaction.hash,
-    });
-
-    // Update account aggregate (projection)
-    await accountRepo.getOrCreate(args.creator, event.block.timestamp);
-    await accountRepo.incrementCollectionsCreated(args.creator);
+    // Update basic account cache only - v4.0 simplified
+    await Promise.all([
+      accountRepo.getOrCreate(args.creator, event.block.timestamp),
+      accountRepo.incrementActivity(args.creator, event.block.timestamp),
+    ]);
 
     logger.logEventSuccess("ERC721CollectionCreated", {
       collection: args.collectionAddress,
       creator: args.creator,
-      name: args.name,
     });
   } catch (error) {
     logger.logEventError("ERC721CollectionCreated", error as Error, { args });

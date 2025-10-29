@@ -97,24 +97,28 @@ export type AuctionCancelledData = z.infer<typeof AuctionCancelledDataSchema>;
 // ============================================================================
 
 /**
- * Offer Created Event Data
+ * Offer Created Event Data - Updated v4.0
  */
 export const OfferCreatedDataSchema = z.object({
-  offerId: AddressSchema,
-  offerType: z.enum(["nft", "collection"]),
+  offerId: z.string(), // bytes32 as string
+  offerer: AddressSchema,
+  collection: AddressSchema,
+  tokenId: z.string(), // uint256 as string
   amount: BigIntStringSchema,
-  paymentToken: AddressSchema,
-  expiresAt: TimestampSchema,
+  offerType: z.number(), // enum as uint8
 });
 
 export type OfferCreatedData = z.infer<typeof OfferCreatedDataSchema>;
 
 /**
  * Offer Accepted Event Data
+ * Event signature: OfferAccepted(bytes32 offerId, address accepter, address collection, uint256 tokenId, uint256 amount)
  */
 export const OfferAcceptedDataSchema = z.object({
-  offerId: AddressSchema,
-  acceptedBy: AddressSchema,
+  offerId: z.string(), // bytes32 as string
+  accepter: AddressSchema,
+  collection: AddressSchema,
+  tokenId: z.string(), // uint256 as string
   amount: BigIntStringSchema,
 });
 
@@ -122,10 +126,12 @@ export type OfferAcceptedData = z.infer<typeof OfferAcceptedDataSchema>;
 
 /**
  * Offer Cancelled Event Data
+ * Event signature: OfferCancelled(bytes32 offerId, address offerer, string reason)
  */
 export const OfferCancelledDataSchema = z.object({
-  offerId: AddressSchema,
-  reason: z.string().optional(),
+  offerId: z.string(), // bytes32 as string
+  offerer: AddressSchema,
+  reason: z.string(),
 });
 
 export type OfferCancelledData = z.infer<typeof OfferCancelledDataSchema>;
@@ -136,36 +142,42 @@ export type OfferCancelledData = z.infer<typeof OfferCancelledDataSchema>;
 
 /**
  * Listing Created Event Data
+ * Actual event: NFTListed(bytes32 listingId, address contractAddress, uint256 tokenId, address seller, uint256 price)
  */
 export const ListingCreatedDataSchema = z.object({
-  listingId: z.string(),
-  orderHash: AddressSchema.optional(),
+  listingId: z.string(), // bytes32
+  contractAddress: AddressSchema, // NFT contract address
+  tokenId: z.string(), // uint256
+  seller: AddressSchema,
   price: BigIntStringSchema,
-  paymentToken: AddressSchema,
-  expiresAt: TimestampSchema.optional(),
-  amount: z.string().default("1"), // ERC1155 amount
 });
 
 export type ListingCreatedData = z.infer<typeof ListingCreatedDataSchema>;
 
 /**
  * Listing Cancelled Event Data
+ * Actual event: ListingCancelled(bytes32 listingId, address contractAddress, uint256 tokenId, address seller)
  */
 export const ListingCancelledDataSchema = z.object({
   listingId: z.string(),
-  reason: z.string().optional(),
+  contractAddress: AddressSchema,
+  tokenId: z.string(),
+  seller: AddressSchema,
 });
 
 export type ListingCancelledData = z.infer<typeof ListingCancelledDataSchema>;
 
 /**
  * Listing Filled Event Data
+ * Actual event: NFTSold(bytes32 listingId, address contractAddress, uint256 tokenId, address seller, address buyer, uint256 price)
  */
 export const ListingFilledDataSchema = z.object({
   listingId: z.string(),
+  contractAddress: AddressSchema,
+  tokenId: z.string(),
+  seller: AddressSchema,
   buyer: AddressSchema,
   price: BigIntStringSchema,
-  amount: z.string().default("1"),
 });
 
 export type ListingFilledData = z.infer<typeof ListingFilledDataSchema>;
@@ -176,15 +188,15 @@ export type ListingFilledData = z.infer<typeof ListingFilledDataSchema>;
 
 /**
  * NFT Purchased Event Data
+ * Actual event: NFTSold(bytes32 listingId, address contractAddress, uint256 tokenId, address seller, address buyer, uint256 price)
  */
 export const NFTPurchasedDataSchema = z.object({
+  listingId: z.string(),
+  contractAddress: AddressSchema,
+  tokenId: z.string(),
+  seller: AddressSchema,
+  buyer: AddressSchema,
   price: BigIntStringSchema,
-  paymentToken: AddressSchema,
-  makerFee: BigIntStringSchema.default("0"),
-  takerFee: BigIntStringSchema.default("0"),
-  royaltyFee: BigIntStringSchema.default("0"),
-  royaltyRecipient: AddressSchema.optional(),
-  amount: z.string().default("1"), // ERC1155
 });
 
 export type NFTPurchasedData = z.infer<typeof NFTPurchasedDataSchema>;
@@ -206,6 +218,25 @@ export const BundlePurchasedDataSchema = z.object({
 });
 
 export type BundlePurchasedData = z.infer<typeof BundlePurchasedDataSchema>;
+
+/**
+ * Bundle Created Event Data
+ */
+export const BundleCreatedDataSchema = z.object({
+  bundleId: z.string(),
+  items: z.array(
+    z.object({
+      collection: AddressSchema,
+      tokenId: z.string(),
+      amount: z.string(),
+    })
+  ),
+  price: BigIntStringSchema,
+  paymentToken: AddressSchema,
+  expiresAt: TimestampSchema.optional(),
+});
+
+export type BundleCreatedData = z.infer<typeof BundleCreatedDataSchema>;
 
 // ============================================================================
 // Mint Event Schemas
@@ -287,6 +318,9 @@ export const EVENT_SCHEMAS = {
   // Trade events
   nft_purchased: NFTPurchasedDataSchema,
   bundle_purchased: BundlePurchasedDataSchema,
+
+  // Bundle events
+  bundle_created: BundleCreatedDataSchema,
 
   // Mint events
   nft_minted: NFTMintedDataSchema,
