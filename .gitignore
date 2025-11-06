@@ -52,3 +52,7 @@ coverage/
 # TypeScript
 *.tsbuildinfo
 pnpm-lock.yaml
+
+# Generated files
+ponder.config.ts
+*.llm.txt
