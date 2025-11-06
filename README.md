@@ -76,27 +76,81 @@ zuno-marketplace-indexer/
 - **Collection Domain**: Manages ERC721/ERC1155 collection creation and minting
 - **Auction Domain**: Processes auction creation, bidding, and settlement
 
-## 🗄️ Database Schema
+## 🗄️ Database Schema - Event-First Architecture
 
-The indexer uses a comprehensive PostgreSQL schema with the following main tables:
+The indexer uses a **pure event-sourcing architecture** with minimal tables for maximum efficiency and real-time accuracy.
 
-### Core Tables
+### Philosophy
 
-- **`account`** - User accounts with trading statistics
-- **`collection`** - NFT collections (ERC721/ERC1155)
-- **`token`** - Individual NFT tokens
-- **`listing`** - Marketplace listings/orders
-- **`trade`** - Trading transactions and sales
-- **`event_log`** - Raw blockchain event logs
-- **`transaction`** - Transaction summaries
+- **Events are the ONLY source of truth** - no projections, no duplicates
+- All data accessed via event queries - real-time and accurate
+- Simplified codebase - 83% reduction in schema complexity
+- Perfect for activity feeds and marketplace displays
 
-### Analytics Tables
+### Core Tables (2 Tables Only)
 
-- **`daily_collection_stats`** - Daily collection statistics
-- **`marketplace_stats`** - Global marketplace metrics
-- **`indexed_contract`** - Indexed contract registry
+#### 1. **`event`** - Single Source of Truth
 
-All tables include proper indexing for optimal query performance across chains.
+All blockchain events are indexed in this table. Every marketplace activity is recorded as an event with flexible JSONB data field.
+
+**Event Categories:**
+- **Auction Events**: `auction_created`, `bid_placed`, `auction_settled`, `auction_cancelled`
+- **Offer Events**: `offer_created`, `offer_accepted`, `offer_cancelled`
+- **Listing Events**: `listing_created`, `listing_cancelled`, `listing_filled`
+- **Trade Events**: `nft_purchased`, `bundle_purchased`
+- **Mint Events**: `nft_minted`, `batch_minted`
+- **Collection Events**: `collection_created`
+
+**Key Fields:**
+- `id` (primary key), `eventType`, `category`
+- `actor`, `counterparty` (participants)
+- `collection`, `tokenId` (asset reference)
+- `data` (JSONB - event-specific flexible schema)
+- `contractAddress`, `blockNumber`, `blockTimestamp`, `transactionHash`
+
+**Comprehensive Indexes:**
+- Single field indexes: `eventType`, `category`, `actor`, `counterparty`, `collection`, `timestamp`, `txHash`, `chainId`
+- Composite indexes: `actor+timestamp`, `collection+timestamp`, `category+eventType`, `collection+tokenId`
+
+#### 2. **`account`** - User Activity Cache
+
+Minimal user data for quick profile lookups. Detailed stats are calculated from events on-demand.
+
+**Key Fields:**
+- `address` (primary key)
+- `firstSeenAt`, `lastActiveAt`, `eventCount`
+
+### Query Examples
+
+```sql
+-- Get active auctions
+SELECT * FROM event
+WHERE eventType = 'auction_created'
+  AND NOT EXISTS (
+    SELECT 1 FROM event e2
+    WHERE e2.eventType IN ('auction_settled', 'auction_cancelled')
+      AND JSON_EXTRACT(e2.data, '$.auctionId') = JSON_EXTRACT(event.data, '$.auctionId')
+  )
+
+-- User's trading volume
+SELECT SUM(CAST(data->>'price' AS BIGINT)) as totalVolume
+FROM event
+WHERE actor = $1 AND category = 'trade'
+
+-- Recent activity feed
+SELECT eventType, blockTimestamp, data, actor, collection
+FROM event
+ORDER BY blockTimestamp DESC
+LIMIT 50
+```
+
+### Benefits of Event-First Architecture
+
+✅ **83% reduction** in schema complexity (from 12 tables to 2)
+✅ **No data duplication** - single source of truth
+✅ **Real-time accuracy** - always up-to-date
+✅ **Flexible queries** - filter by any dimension
+✅ **Easier maintenance** - simple, clean, effective
 
 ## 📋 Prerequisites
 
@@ -270,4 +324,4 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **Built with ❤️ by the Zuno Team**
 
-_Version 2.0.0 - Domain-Driven Architecture_
+_Version 4.0.0 - Event-First Architecture with Domain-Driven Design_
