@@ -11,7 +11,7 @@
     "db": "ponder db",
     "codegen": "ponder codegen",
     "serve": "ponder serve",
-    "lint": "eslint .",
+    "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "typecheck": "tsc",
     "generate-config": "tsx scripts/generate-config.ts"
   },
