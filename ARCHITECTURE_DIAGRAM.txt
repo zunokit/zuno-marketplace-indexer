@@ -1,0 +1,177 @@
+================================================================================
+                    ZUNO MARKETPLACE INDEXER - ARCHITECTURE
+================================================================================
+
+LAYER 1: BLOCKCHAIN NETWORKS
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Ethereum (1)          Optimism (10)        Base (8453)       Polygon (137)  │
+│  0xC02aaA39b223FE      0x420000000000      0x420000000000     0x7ceB23fD   │
+│  (WETH9 Contract)      (WETH9 Contract)    (WETH9 Contract)   (WETH9 Cont) │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                  ↓
+                      RPC/WebSocket Connections
+                   (PONDER_RPC_URL_*, PONDER_WS_URL_*)
+                                  ↓
+
+LAYER 2: PONDER INDEXER ENGINE
+├─────────────────────────────────────────────────────────────────────────────┤
+│ [ponder.config.ts]                                                          │
+│ ├─ orderingMode: "multichain"                                              │
+│ ├─ chains: { mainnet, base, optimism, polygon }                            │
+│ └─ contracts:                                                               │
+│    └─ weth9: { abi, startBlock: "latest" ⚠️ BUG }                          │
+│                                                                              │
+│ Event Subscription:                                                         │
+│ ├─ Filter: weth9:Deposit events                                            │
+│ ├─ Filter: weth9:Withdrawal events ❌ NOT LISTENED                         │
+│ ├─ Filter: weth9:Transfer events ❌ NOT LISTENED                           │
+│ └─ Deduplication: Prevents duplicate processing                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                  ↓
+                          Event Handler Dispatch
+                                  ↓
+
+LAYER 3: EVENT HANDLERS
+├─────────────────────────────────────────────────────────────────────────────┤
+│ [src/index.ts] - Event Processors                                           │
+│                                                                              │
+│ ✅ Handler: weth9:Deposit                                                   │
+│    • Input: { event, context }                                             │
+│    • Logic:                                                                 │
+│      - Extract: dst (address), wad (amount)                                │
+│      - Insert/Update: account table                                        │
+│      - OnConflict: balance += wad (additive)                               │
+│                                                                              │
+│ ❌ Handler: weth9:Withdrawal - NOT IMPLEMENTED                             │
+│    • Missing: Withdrawal event tracking                                    │
+│    • Impact: Balances wrong (missing decrements)                           │
+│                                                                              │
+│ ❌ Handler: weth9:Transfer - NOT IMPLEMENTED                               │
+│    • Missing: Transfer event tracking                                      │
+│    • Impact: Cannot track balance changes from transfers                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                  ↓
+                      Database Operations (async)
+                                  ↓
+
+LAYER 4: DATABASE LAYER
+├─────────────────────────────────────────────────────────────────────────────┤
+│ [ponder.schema.ts] - Table Definitions                                      │
+│                                                                              │
+│ Table: account                                                              │
+│ ┌─────────────────────────────────────────────────────┐                    │
+│ │ address (hex)            │ balance (bigint)         │                    │
+│ │ PRIMARY KEY              │ NOT NULL                 │                    │
+│ ├─────────────────────────┼──────────────────────────┤                    │
+│ │ 0x123...                │ 1500000000000000000      │                    │
+│ │ 0x456...                │ 3200000000000000000      │                    │
+│ └─────────────────────────────────────────────────────┘                    │
+│                                                                              │
+│ Storage Backend (DATABASE_URL):                                            │
+│ ├─ SQLite (default, development only) ⚠️ BUG: Not production-ready        │
+│ └─ PostgreSQL (recommended, production)                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                  ↓
+                        Data Retrieval via API
+                                  ↓
+
+LAYER 5: API LAYER
+├─────────────────────────────────────────────────────────────────────────────┤
+│ [src/api/index.ts] - Hono Web Framework                                     │
+│                                                                              │
+│ Endpoints:                                                                  │
+│                                                                              │
+│ SQL Query Interface:                                                        │
+│ GET|POST /sql/*                                                            │
+│ ├─ Type: Raw SQL queries                                                   │
+│ ├─ Security: ❌ NO AUTH, SQL Injection Risk                               │
+│ └─ Example: /sql/SELECT * FROM account                                    │
+│                                                                              │
+│ GraphQL Query Interface:                                                    │
+│ GET|POST /graphql                                                          │
+│ GET|POST /                                                                 │
+│ ├─ Type: GraphQL queries                                                   │
+│ ├─ Auto-generated from schema                                              │
+│ ├─ Security: ❌ NO AUTH, NO RATE LIMITING                                 │
+│ └─ Example: { accounts { address balance } }                              │
+│                                                                              │
+│ Middleware Stack:                                                           │
+│ ├─ CORS: ❌ Not configured                                                 │
+│ ├─ Authentication: ❌ Missing                                              │
+│ ├─ Rate Limiting: ❌ Missing                                               │
+│ ├─ Logging: ❌ Missing                                                     │
+│ ├─ Error Handling: ❌ Basic (errors exposed)                              │
+│ └─ Validation: ⚠️ Basic (Hono defaults)                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                  ↓
+                          HTTP Responses
+                                  ↓
+
+LAYER 6: CLIENTS
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Frontend Applications         Analytics Tools        Bot Scrapers           │
+│ └─ Query via GraphQL          └─ Query via GraphQL    └─ Scrape via SQL  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+DATA FLOW EXAMPLE: Deposit Event
+================================================================================
+
+User deposits 1 WETH on Ethereum:
+  
+  [Blockchain] TX: call weth9.deposit()
+       ↓
+  [Ponder] Detects: Deposit event (dst=0x123, wad=1000000000000000000)
+       ↓
+  [Handler] ponder.on("weth9:Deposit", ...)
+       ↓
+  [Database] INSERT INTO account (address, balance)
+             VALUES (0x123, 1000000000000000000)
+             ON CONFLICT (address) DO UPDATE SET balance = balance + 1000000000000000000
+       ↓
+  [API] Query: { accounts(where: { address: "0x123" }) { balance } }
+       ↓
+  [Response] { data: { accounts: [{ balance: "1000000000000000000" }] } }
+
+
+USER ACTION: Same user withdraws 0.5 WETH
+
+  [Blockchain] TX: call weth9.withdraw(500000000000000000)
+       ↓
+  [Ponder] Detects: Withdrawal event (src=0x123, wad=500000000000000000)
+       ↓
+  [Handler] ponder.on("weth9:Withdrawal", ...) ❌ NOT IMPLEMENTED
+       ↓
+  [Database] No update! Balance remains: 1000000000000000000 ❌ WRONG
+       ↓
+  [Reality] Actual balance: 0.5 WETH
+             Indexed balance: 1.0 WETH
+       ↓
+  [Result] Data inconsistency! ⚠️ BUG
+
+
+ISSUES BY SEVERITY
+================================================================================
+
+CRITICAL (Must fix immediately):
+  1. startBlock: "latest" - Misses all historical events
+  2. Only Deposit events tracked - Withdrawals/Transfers ignored
+  3. No authentication - Public API access
+  4. No error handling - Silent failures
+  5. No rate limiting - DoS vulnerability
+
+HIGH (Must fix before production):
+  6. No logging - Cannot debug issues
+  7. SQL endpoint exposed - Injection attack vector
+  8. No input validation - Invalid queries accepted
+  9. No database indexes - Slow queries
+  10. No env validation - Silent configuration failures
+
+MEDIUM (Should fix soon):
+  11. Missing CORS - Frontend integration issues
+  12. No chainId in schema - Cross-chain confusion
+  13. No documentation - Onboarding difficult
+  14. SQLite default - Not production-ready
+  15. No pre-commit hooks - Code quality issues
+
+================================================================================
