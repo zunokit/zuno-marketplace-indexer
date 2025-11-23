@@ -1,16 +1,44 @@
 /**
  * Handler Wrapper
- * Wraps event handlers with error handling, retry logic, and metrics
+ * Wraps event handlers with error handling, retry logic, metrics, and webhooks
  */
 
 import type { ErrorContext } from "@/infrastructure/monitoring/error-handler";
 import { getErrorHandler } from "@/infrastructure/monitoring/error-handler";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
 import { getMetrics, MetricNames } from "@/infrastructure/monitoring/metrics";
+import { webhookClient, type WebhookPayload } from "@/infrastructure/webhooks/client";
+import { webhookConfig } from "@/infrastructure/webhooks/config";
 
 const errorHandler = getErrorHandler();
 const logger = getEventLogger();
 const metrics = getMetrics();
+
+/**
+ * Event name mapping for webhook events
+ */
+const EVENT_NAME_MAP: Record<string, string> = {
+  ERC721CollectionCreated: 'collection.created',
+  ERC1155CollectionCreated: 'collection.created',
+  NFTMinted: 'collection.minted',
+  BatchMinted: 'collection.batch_minted',
+  NFTListed: 'nft.listed',
+  NFTBought: 'nft.bought',
+  ListingCancelled: 'listing.cancelled',
+  AuctionCreated: 'auction.created',
+  BidPlaced: 'bid.placed',
+  AuctionSettled: 'auction.settled',
+  OfferMade: 'offer.made',
+  OfferAccepted: 'offer.accepted',
+  OfferCancelled: 'offer.cancelled',
+};
+
+/**
+ * Map event name to webhook event name
+ */
+function mapEventName(eventName: string): string {
+  return EVENT_NAME_MAP[eventName] || eventName.toLowerCase();
+}
 
 export type EventHandler<TEvent = any, TContext = any> = (args: {
   event: TEvent;
@@ -60,6 +88,57 @@ export function wrapHandler<TEvent = any, TContext = any>(
         metrics.gauge(MetricNames.CURRENT_BLOCK, Number(blockNumber));
 
         logger.logMetric(`${eventName} Processing Time`, processingTime, "ms");
+
+        // Trigger webhook after successful event processing
+        if (webhookConfig.enabled) {
+          const webhookEventName = mapEventName(eventName);
+
+          if (webhookClient.shouldTriggerWebhook(webhookEventName)) {
+            try {
+              const payload: WebhookPayload = {
+                event: webhookEventName,
+                chainId: context.network.chainId,
+                timestamp: event.block.timestamp,
+                data: {
+                  ...event.args,
+                  blockNumber: event.block.number,
+                  txHash: event.transaction.hash,
+                  logIndex: event.log.logIndex,
+                  contractAddress: event.log.address,
+                },
+              };
+
+              // Send webhook (fire and forget)
+              webhookClient
+                .sendWebhook(payload)
+                .then((webhookResult) => {
+                  if (webhookResult.success) {
+                    logger.debug(`Webhook delivered for ${webhookEventName}`, {
+                      attempts: webhookResult.attempts,
+                      statusCode: webhookResult.statusCode,
+                    });
+                  } else {
+                    logger.error(
+                      `Webhook failed for ${webhookEventName} after ${webhookResult.attempts} attempts`,
+                      {
+                        error: webhookResult.error,
+                      }
+                    );
+                  }
+                })
+                .catch((error) => {
+                  logger.error(`Webhook error for ${webhookEventName}`, {
+                    error: error.message,
+                  });
+                });
+            } catch (error) {
+              // Don't let webhook errors break event processing
+              logger.error(`Error triggering webhook for ${webhookEventName}`, {
+                error: error instanceof Error ? error.message : 'Unknown error',
+              });
+            }
+          }
+        }
       } else {
         // Record failure metrics
         metrics.increment(MetricNames.EVENTS_FAILED);
