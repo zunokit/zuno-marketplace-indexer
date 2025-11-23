@@ -113,29 +113,30 @@ export function wrapHandler<TEvent = any, TContext = any>(
                 .sendWebhook(payload)
                 .then((webhookResult) => {
                   if (webhookResult.success) {
-                    logger.debug(`Webhook delivered for ${webhookEventName}`, {
+                    logger.logInfo("Webhook", `Delivered for ${webhookEventName}`, {
                       attempts: webhookResult.attempts,
                       statusCode: webhookResult.statusCode,
                     });
                   } else {
-                    logger.error(
-                      `Webhook failed for ${webhookEventName} after ${webhookResult.attempts} attempts`,
-                      {
-                        error: webhookResult.error,
-                      }
+                    logger.logEventError(
+                      "Webhook",
+                      new Error(`Failed for ${webhookEventName} after ${webhookResult.attempts} attempts`),
+                      { error: webhookResult.error }
                     );
                   }
                 })
-                .catch((error) => {
-                  logger.error(`Webhook error for ${webhookEventName}`, {
-                    error: error.message,
+                .catch((err) => {
+                  logger.logEventError("Webhook", err instanceof Error ? err : new Error(String(err)), {
+                    event: webhookEventName,
                   });
                 });
             } catch (error) {
               // Don't let webhook errors break event processing
-              logger.error(`Error triggering webhook for ${webhookEventName}`, {
-                error: error instanceof Error ? error.message : 'Unknown error',
-              });
+              logger.logEventError(
+                "Webhook",
+                error instanceof Error ? error : new Error('Unknown error'),
+                { event: webhookEventName }
+              );
             }
           }
         }
