@@ -19,20 +19,22 @@ import { validateEventData, type AuctionCreatedData } from "@/shared/schemas/eve
 const logger = getEventLogger();
 
 /**
- * Raw event args from blockchain
+ * Raw event args from blockchain - Standard Auction
  */
 interface AuctionCreatedEventArgs {
   auctionId: `0x${string}`;
-  nftContract: `0x${string}`;
-  tokenId: bigint;
+  nftContract?: `0x${string}`;
+  tokenId?: bigint;
   seller: `0x${string}`;
-  startPrice: bigint;
-  reservePrice: bigint;
-  startTime: bigint;
-  endTime: bigint;
-  auctionType: bigint; // 0 = English, 1 = Dutch
+  startPrice?: bigint;
+  reservePrice?: bigint;
+  startTime?: bigint;
+  endTime?: bigint;
+  auctionType: bigint | number; // 0 = English, 1 = Dutch
   endPrice?: bigint; // Dutch auction only
   priceDecrement?: bigint; // Dutch auction only
+  // AuctionCreatedViaFactory specific fields
+  auctionContract?: `0x${string}`;
 }
 
 /**
@@ -94,16 +96,17 @@ export async function handleAuctionCreated({
     // Determine auction type
     const auctionType = Number(args.auctionType) === 0 ? "english" : "dutch";
 
-    // Prepare event data
+    // Prepare event data - handle both standard and factory events
     const eventData: AuctionCreatedData = {
       auctionId: args.auctionId,
       auctionType,
-      startPrice: args.startPrice.toString(),
-      reservePrice: args.reservePrice.toString(),
+      startPrice: args.startPrice?.toString() || "0",
+      reservePrice: args.reservePrice?.toString(),
       endPrice: args.endPrice?.toString(),
       priceDecrement: args.priceDecrement?.toString(),
       startTime: args.startTime,
       endTime: args.endTime,
+      auctionContract: args.auctionContract,
     };
 
     // Validate with Zod schema
@@ -114,8 +117,8 @@ export async function handleAuctionCreated({
       eventType: "auction_created",
       category: "auction",
       actor: args.seller,
-      collection: args.nftContract,
-      tokenId: args.tokenId.toString(),
+      collection: args.nftContract || args.auctionContract,
+      tokenId: args.tokenId?.toString(),
       data: validatedData,
       contractName: "AuctionManager",
       event,
@@ -133,7 +136,7 @@ export async function handleAuctionCreated({
       auctionId: args.auctionId,
       seller: args.seller,
       auctionType,
-      startPrice: args.startPrice.toString(),
+      startPrice: args.startPrice?.toString() || "0",
     });
   } catch (error) {
     logger.logEventError("AuctionCreated", error as Error, {

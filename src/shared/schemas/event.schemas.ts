@@ -44,15 +44,16 @@ const TimestampSchema = z.bigint();
  * Auction Created Event Data
  */
 export const AuctionCreatedDataSchema = z.object({
-  auctionId: AddressSchema,
+  auctionId: z.string(), // bytes32 as string
   auctionType: z.enum(["english", "dutch"]),
   startPrice: BigIntStringSchema,
   reservePrice: BigIntStringSchema.optional(),
   endPrice: BigIntStringSchema.optional(), // Dutch auctions
   priceDecrement: BigIntStringSchema.optional(), // Dutch auctions
-  startTime: TimestampSchema,
-  endTime: TimestampSchema,
+  startTime: TimestampSchema.optional(),
+  endTime: TimestampSchema.optional(),
   paymentToken: AddressSchema.optional(),
+  auctionContract: AddressSchema.optional(), // AuctionCreatedViaFactory
 });
 
 export type AuctionCreatedData = z.infer<typeof AuctionCreatedDataSchema>;

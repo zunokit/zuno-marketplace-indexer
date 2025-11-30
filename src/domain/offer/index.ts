@@ -14,6 +14,8 @@
 import { ponder } from "ponder:registry";
 import { wrapHandler } from "@/infrastructure/monitoring/handler-wrapper";
 import { handleOfferCreated } from "./handlers/offer-created.handler";
+import { handleOfferAccepted } from "./handlers/offer-accepted.handler";
+import { handleOfferCancelled } from "./handlers/offer-cancelled.handler";
 
 /**
  * Register all offer event handlers
@@ -24,25 +26,38 @@ export function registerOfferHandlers() {
   // ============================================================================
 
   // Offer Created - User creates an offer
-  // Contract: offermanager_anvil (0x959922be3caee4b8cd9a407cc3ac1c251c2007b1)
   ponder.on(
     "offermanager_anvil:OfferCreated",
     wrapHandler("OfferCreated", handleOfferCreated)
   );
 
-  // TODO: Add more offer event handlers when needed
-  // ponder.on(
-  //   "offermanager_anvil:OfferAccepted",
-  //   wrapHandler("OfferAccepted", handleOfferAccepted)
-  // );
+  // Offer Accepted - Offer is accepted by owner
+  ponder.on(
+    "offermanager_anvil:OfferAccepted",
+    wrapHandler("OfferAccepted", handleOfferAccepted)
+  );
 
-  // ponder.on(
-  //   "offermanager_anvil:OfferCancelled",
-  //   wrapHandler("OfferCancelled", handleOfferCancelled)
-  // );
+  // Offer Cancelled - Offer is cancelled by offerer
+  ponder.on(
+    "offermanager_anvil:OfferCancelled",
+    wrapHandler("OfferCancelled", handleOfferCancelled)
+  );
 
-  // ponder.on(
-  //   "offermanager_anvil:OfferExpired",
-  //   wrapHandler("OfferExpired", handleOfferExpired)
-  // );
+  // Offer Expired - Offer expired naturally
+  ponder.on(
+    "offermanager_anvil:OfferExpired",
+    wrapHandler("OfferExpired", handleOfferCancelled)
+  );
+
+  // Collection Offer Filled - Collection offer was fulfilled
+  ponder.on(
+    "offermanager_anvil:CollectionOfferFilled",
+    wrapHandler("CollectionOfferFilled", handleOfferAccepted)
+  );
+
+  // Trait Offer Filled - Trait-based offer was fulfilled
+  ponder.on(
+    "offermanager_anvil:TraitOfferFilled",
+    wrapHandler("TraitOfferFilled", handleOfferAccepted)
+  );
 }

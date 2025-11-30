@@ -6,12 +6,14 @@
 import type { ErrorContext } from "@/infrastructure/monitoring/error-handler";
 import { getErrorHandler } from "@/infrastructure/monitoring/error-handler";
 import { getEventLogger } from "@/infrastructure/logging/event-logger";
+import { getFileLogger } from "@/infrastructure/logging/file-logger";
 import { getMetrics, MetricNames } from "@/infrastructure/monitoring/metrics";
 import { webhookClient, type WebhookPayload } from "@/infrastructure/webhooks/client";
 import { webhookConfig } from "@/infrastructure/webhooks/config";
 
 const errorHandler = getErrorHandler();
 const logger = getEventLogger();
+const fileLogger = getFileLogger();
 const metrics = getMetrics();
 
 /**
@@ -57,6 +59,9 @@ export function wrapHandler<TEvent = any, TContext = any>(
     const blockNumber = event.block.number;
     const transactionHash = event.transaction.hash;
 
+    // Log raw event to file
+    fileLogger.logRawEvent(eventName, event, context);
+
     // Build error context
     const errorContext: ErrorContext = {
       eventName,
@@ -68,6 +73,12 @@ export function wrapHandler<TEvent = any, TContext = any>(
     };
 
     try {
+      fileLogger.logEvent(eventName, "START", {
+        blockNumber: blockNumber?.toString(),
+        txHash: transactionHash,
+        args: event.args,
+      });
+
       // Execute handler with retry logic
       const result = await errorHandler.withRetry(
         () => handler({ event, context }),
@@ -82,6 +93,12 @@ export function wrapHandler<TEvent = any, TContext = any>(
       const processingTime = Date.now() - startTime;
 
       if (result.success) {
+        // Log success to file
+        fileLogger.logEvent(eventName, "SUCCESS", {
+          processingTime: `${processingTime}ms`,
+          blockNumber: blockNumber?.toString(),
+        });
+
         // Record success metrics
         metrics.increment(MetricNames.EVENTS_PROCESSED);
         metrics.histogram(MetricNames.EVENT_PROCESSING_TIME, processingTime);
@@ -141,6 +158,9 @@ export function wrapHandler<TEvent = any, TContext = any>(
           }
         }
       } else {
+        // Log error to file
+        fileLogger.logError(eventName, result.error, errorContext);
+
         // Record failure metrics
         metrics.increment(MetricNames.EVENTS_FAILED);
         metrics.gauge(
@@ -153,6 +173,9 @@ export function wrapHandler<TEvent = any, TContext = any>(
     } catch (error) {
       // Unexpected error (shouldn't happen with error handler, but just in case)
       const processingTime = Date.now() - startTime;
+
+      // Log error to file
+      fileLogger.logError(eventName, error as Error, errorContext);
 
       metrics.increment(MetricNames.EVENTS_FAILED);
       logger.logEventError(eventName, error as Error, errorContext);
