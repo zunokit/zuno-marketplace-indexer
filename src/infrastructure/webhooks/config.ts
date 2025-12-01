@@ -34,6 +34,14 @@ export function loadWebhookConfig(): WebhookConfig {
  */
 export const webhookConfig = loadWebhookConfig();
 
+// Debug log webhook config on load
+console.log('[WEBHOOK CONFIG]', {
+  enabled: webhookConfig.enabled,
+  url: webhookConfig.url,
+  events: webhookConfig.events,
+  secret: webhookConfig.secret ? '***' : 'MISSING',
+});
+
 /**
  * Validate webhook configuration
  */

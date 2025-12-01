@@ -17,6 +17,23 @@ const fileLogger = getFileLogger();
 const metrics = getMetrics();
 
 /**
+ * Recursively convert BigInt values to strings for JSON serialization
+ */
+function serializeBigInts(obj: unknown): unknown {
+  if (obj === null || obj === undefined) return obj;
+  if (typeof obj === "bigint") return obj.toString();
+  if (Array.isArray(obj)) return obj.map(serializeBigInts);
+  if (typeof obj === "object") {
+    const result: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(obj)) {
+      result[key] = serializeBigInts(value);
+    }
+    return result;
+  }
+  return obj;
+}
+
+/**
  * Event name mapping for webhook events
  */
 const EVENT_NAME_MAP: Record<string, string> = {
@@ -115,14 +132,14 @@ export function wrapHandler<TEvent = any, TContext = any>(
               const payload: WebhookPayload = {
                 event: webhookEventName,
                 chainId: context.network.chainId,
-                timestamp: event.block.timestamp,
-                data: {
+                timestamp: Number(event.block.timestamp),
+                data: serializeBigInts({
                   ...event.args,
                   blockNumber: event.block.number,
                   txHash: event.transaction.hash,
                   logIndex: event.log.logIndex,
                   contractAddress: event.log.address,
-                },
+                }) as Record<string, unknown>,
               };
 
               // Send webhook (fire and forget)
