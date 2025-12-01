@@ -62,7 +62,7 @@ export type AuctionCreatedData = z.infer<typeof AuctionCreatedDataSchema>;
  * Bid Placed Event Data
  */
 export const BidPlacedDataSchema = z.object({
-  auctionId: AddressSchema,
+  auctionId: z.string(), // bytes32 as string (consistent with AuctionCreatedDataSchema)
   bidAmount: BigIntStringSchema,
   previousBid: BigIntStringSchema.optional(),
   previousBidder: AddressSchema.optional(),
@@ -75,7 +75,7 @@ export type BidPlacedData = z.infer<typeof BidPlacedDataSchema>;
  * Auction Settled Event Data
  */
 export const AuctionSettledDataSchema = z.object({
-  auctionId: AddressSchema,
+  auctionId: z.string(), // bytes32 as string (consistent with AuctionCreatedDataSchema)
   winner: AddressSchema,
   finalPrice: BigIntStringSchema,
   totalBids: z.number(),
@@ -87,7 +87,7 @@ export type AuctionSettledData = z.infer<typeof AuctionSettledDataSchema>;
  * Auction Cancelled Event Data
  */
 export const AuctionCancelledDataSchema = z.object({
-  auctionId: AddressSchema,
+  auctionId: z.string(), // bytes32 as string (consistent with AuctionCreatedDataSchema)
   reason: z.string().optional(),
 });
 
@@ -136,6 +136,45 @@ export const OfferCancelledDataSchema = z.object({
 });
 
 export type OfferCancelledData = z.infer<typeof OfferCancelledDataSchema>;
+
+/**
+ * Offer Expired Event Data
+ * Event signature: OfferExpired(bytes32 offerId, address offerer)
+ */
+export const OfferExpiredDataSchema = z.object({
+  offerId: z.string(), // bytes32 as string
+  offerer: AddressSchema,
+});
+
+export type OfferExpiredData = z.infer<typeof OfferExpiredDataSchema>;
+
+/**
+ * Collection Offer Filled Event Data
+ * Event signature: CollectionOfferFilled(bytes32 offerId, address seller, uint256 tokenId, uint256 amount, uint8 offerType)
+ */
+export const CollectionOfferFilledDataSchema = z.object({
+  offerId: z.string(), // bytes32 as string
+  seller: AddressSchema,
+  tokenId: z.string(), // uint256 as string
+  amount: BigIntStringSchema,
+  offerType: z.number(), // enum as uint8
+});
+
+export type CollectionOfferFilledData = z.infer<typeof CollectionOfferFilledDataSchema>;
+
+/**
+ * Trait Offer Filled Event Data
+ * Event signature: TraitOfferFilled(bytes32 offerId, address seller, uint256 tokenId, uint256 amount, uint8 offerType)
+ */
+export const TraitOfferFilledDataSchema = z.object({
+  offerId: z.string(), // bytes32 as string
+  seller: AddressSchema,
+  tokenId: z.string(), // uint256 as string
+  amount: BigIntStringSchema,
+  offerType: z.number(), // enum as uint8
+});
+
+export type TraitOfferFilledData = z.infer<typeof TraitOfferFilledDataSchema>;
 
 // ============================================================================
 // Listing Event Schemas
@@ -310,6 +349,9 @@ export const EVENT_SCHEMAS = {
   offer_created: OfferCreatedDataSchema,
   offer_accepted: OfferAcceptedDataSchema,
   offer_cancelled: OfferCancelledDataSchema,
+  offer_expired: OfferExpiredDataSchema,
+  collection_offer_filled: CollectionOfferFilledDataSchema,
+  trait_offer_filled: TraitOfferFilledDataSchema,
 
   // Listing events
   listing_created: ListingCreatedDataSchema,

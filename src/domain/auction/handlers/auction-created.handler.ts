@@ -113,11 +113,13 @@ export async function handleAuctionCreated({
     const validatedData = validateEventData("auction_created", eventData);
 
     // Create event record (source of truth)
+    // Note: collection should only be nftContract, not auctionContract
+    // auctionContract is stored in event data for reference
     const eventResult = await eventRepo.createEvent({
       eventType: "auction_created",
       category: "auction",
       actor: args.seller,
-      collection: args.nftContract || args.auctionContract,
+      collection: args.nftContract,
       tokenId: args.tokenId?.toString(),
       data: validatedData,
       contractName: "AuctionFactory",

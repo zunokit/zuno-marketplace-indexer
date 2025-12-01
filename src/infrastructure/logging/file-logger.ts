@@ -1,19 +1,28 @@
 /**
  * File Logger - Writes all event processing logs to file for debugging
+ * 
+ * Configuration via environment variables:
+ * - LOG_FILE_PATH: Custom log file path (default: ./debug.log)
+ * - FILE_LOGGING_ENABLED: Enable/disable file logging (default: true)
+ * - FILE_LOGGING_CONSOLE: Enable/disable console output (default: false)
  */
 
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import * as path from "path";
 
-const LOG_FILE = path.join(process.cwd(), "debug.log");
+const LOG_FILE = process.env.LOG_FILE_PATH || path.join(process.cwd(), "debug.log");
 
 export class FileLogger {
   private static instance: FileLogger;
   private enabled: boolean;
+  private consoleEnabled: boolean;
   private logFile: string;
+  private writeQueue: string[] = [];
+  private isWriting: boolean = false;
 
   private constructor() {
-    this.enabled = true;
+    this.enabled = process.env.FILE_LOGGING_ENABLED !== "false";
+    this.consoleEnabled = process.env.FILE_LOGGING_CONSOLE === "true";
     this.logFile = LOG_FILE;
     // Clear log file on startup
     this.clearLog();
@@ -31,21 +40,33 @@ export class FileLogger {
     return new Date().toISOString();
   }
 
-  private writeToFile(message: string): void {
-    if (!this.enabled) return;
+  private async processWriteQueue(): Promise<void> {
+    if (this.isWriting || this.writeQueue.length === 0) return;
+    
+    this.isWriting = true;
     try {
-      fs.appendFileSync(this.logFile, message + "\n");
+      const messages = this.writeQueue.splice(0, this.writeQueue.length);
+      await fs.appendFile(this.logFile, messages.join("\n") + "\n");
     } catch (error) {
       console.error("Failed to write to log file:", error);
+    } finally {
+      this.isWriting = false;
+      if (this.writeQueue.length > 0) {
+        this.processWriteQueue();
+      }
     }
   }
 
+  private writeToFile(message: string): void {
+    if (!this.enabled) return;
+    this.writeQueue.push(message);
+    this.processWriteQueue();
+  }
+
   public clearLog(): void {
-    try {
-      fs.writeFileSync(this.logFile, "");
-    } catch (error) {
+    fs.writeFile(this.logFile, "").catch((error) => {
       console.error("Failed to clear log file:", error);
-    }
+    });
   }
 
   public log(message: string, data?: any): void {
@@ -57,7 +78,7 @@ export class FileLogger {
       , 2)}`;
     }
     this.writeToFile(logLine);
-    console.log(logLine);
+    if (this.consoleEnabled) console.log(logLine);
   }
 
   public logEvent(eventName: string, phase: "START" | "SUCCESS" | "ERROR", details: any): void {
@@ -71,7 +92,7 @@ export class FileLogger {
     }
     this.writeToFile(logLine);
     this.writeToFile("---");
-    console.log(logLine);
+    if (this.consoleEnabled) console.log(logLine);
   }
 
   public logRawEvent(eventName: string, event: any, context: any): void {
@@ -93,7 +114,7 @@ export class FileLogger {
     
     this.writeToFile(logLine);
     this.writeToFile("===");
-    console.log(logLine);
+    if (this.consoleEnabled) console.log(logLine);
   }
 
   public logError(eventName: string, error: Error, context?: any): void {
@@ -109,7 +130,7 @@ export class FileLogger {
     
     this.writeToFile(logLine);
     this.writeToFile("!!!ERROR!!!");
-    console.error(logLine);
+    if (this.consoleEnabled) console.error(logLine);
   }
 
   public logDbOperation(operation: string, table: string, data: any): void {
@@ -120,7 +141,7 @@ export class FileLogger {
     , 2)}`;
     
     this.writeToFile(logLine);
-    console.log(logLine);
+    if (this.consoleEnabled) console.log(logLine);
   }
 }
 
