@@ -120,7 +120,7 @@ export async function handleAuctionCreated({
       collection: args.nftContract || args.auctionContract,
       tokenId: args.tokenId?.toString(),
       data: validatedData,
-      contractName: "AuctionManager",
+      contractName: "AuctionFactory",
       event,
     });
 
