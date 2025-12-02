@@ -6,7 +6,7 @@
  * This file is generated from Zuno Marketplace ABIs API.
  * To regenerate: pnpm generate-config
  * 
- * Generated: 2025-11-30T16:59:41.150Z
+ * Generated: 2025-12-02T00:25:01.312Z
  * Chains: 1
  * Contracts: 26
  */
