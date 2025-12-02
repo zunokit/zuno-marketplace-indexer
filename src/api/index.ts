@@ -14,6 +14,7 @@
 
 import { db } from "ponder:api";
 import schema from "ponder:schema";
+import { eq, and, desc } from "ponder";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import {
@@ -81,31 +82,35 @@ app.get("/api/events", async (c) => {
     const collection = c.req.query("collection");
     const actor = c.req.query("actor");
 
-    const events = await db
-      .select()
-      .from(schema.event)
-      .limit(limit * 2) // Get more events for filtering
-      .offset(offset);
-
-    // Filter events based on query parameters
-    let filteredEvents = events;
-
+    // Build WHERE conditions for database-level filtering
+    const conditions = [];
     if (eventType) {
-      filteredEvents = filteredEvents.filter(event => event.eventType === eventType);
+      conditions.push(eq(schema.event.eventType, eventType));
     }
     if (category) {
-      filteredEvents = filteredEvents.filter(event => event.category === category);
+      conditions.push(eq(schema.event.category, category));
     }
     if (collection) {
-      filteredEvents = filteredEvents.filter(event => event.collection === collection.toLowerCase());
+      conditions.push(eq(schema.event.collection, collection.toLowerCase() as `0x${string}`));
     }
     if (actor) {
-      filteredEvents = filteredEvents.filter(event => event.actor === actor.toLowerCase());
+      conditions.push(eq(schema.event.actor, actor.toLowerCase() as `0x${string}`));
     }
+
+    // Query with proper drizzle operators
+    const baseQuery = db.select().from(schema.event);
+    const filteredQuery = conditions.length > 0 
+      ? baseQuery.where(and(...conditions))
+      : baseQuery;
+    
+    const events = await filteredQuery
+      .orderBy(desc(schema.event.blockTimestamp))
+      .limit(limit)
+      .offset(offset);
 
     return c.json(serializeBigInts({
       success: true,
-      data: filteredEvents,
+      data: events,
       pagination: { page, limit },
       note: "All marketplace data can be queried by filtering events. Use eventType, category, collection, or actor parameters to get specific data.",
     }));
@@ -124,20 +129,18 @@ app.get("/api/activity", async (c) => {
     const limit = Math.min(parseInt(c.req.query("limit") || "50"), 100);
     const collection = c.req.query("collection");
 
-    const activities = await db
-      .select()
-      .from(schema.event)
-      .limit(limit);
+    const baseQuery = db.select().from(schema.event);
+    const filteredQuery = collection 
+      ? baseQuery.where(eq(schema.event.collection, collection.toLowerCase() as `0x${string}`))
+      : baseQuery;
 
-    // Filter by collection if specified
-    let filteredActivities = activities;
-    if (collection) {
-      filteredActivities = activities.filter(activity => activity.collection === collection.toLowerCase());
-    }
+    const activities = await filteredQuery
+      .orderBy(desc(schema.event.blockTimestamp))
+      .limit(limit);
 
     return c.json(serializeBigInts({
       success: true,
-      data: filteredActivities,
+      data: activities,
     }));
   } catch (error) {
     console.error('Activity API error:', error);

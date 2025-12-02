@@ -13,23 +13,65 @@ import { handleBidPlaced } from "./handlers/bid-placed.handler";
  * Register all auction event handlers
  */
 export function registerAuctionHandlers() {
-  // Auction lifecycle events from advancedlistingmanager
+  // ============================================================================
+  // AdvancedListingManager Auction Events
+  // ============================================================================
   ponder.on(
     "advancedlistingmanager_anvil:AuctionCreated",
     wrapHandler("AuctionCreated", handleAuctionCreated)
   );
 
-  // Note: These handlers are ready for when auction contracts become available
-  // Uncomment when auction settlement and bidding contracts are deployed
-  /*
+  // ============================================================================
+  // AuctionFactory Events
+  // ============================================================================
   ponder.on(
-    "auctionmanager_anvil:AuctionSettled",
+    "auctionfactory_anvil:AuctionCreatedViaFactory",
+    wrapHandler("AuctionCreatedViaFactory", handleAuctionCreated)
+  );
+
+  // ============================================================================
+  // English Auction Implementation Events
+  // ============================================================================
+  ponder.on(
+    "englishauctionimplementation_anvil:AuctionCreated",
+    wrapHandler("EnglishAuctionCreated", handleAuctionCreated)
+  );
+
+  ponder.on(
+    "englishauctionimplementation_anvil:BidPlaced",
+    wrapHandler("BidPlaced", handleBidPlaced)
+  );
+
+  ponder.on(
+    "englishauctionimplementation_anvil:AuctionSettled",
     wrapHandler("AuctionSettled", handleAuctionSettled)
   );
 
   ponder.on(
-    "auctionmanager_anvil:BidPlaced", 
-    wrapHandler("BidPlaced", handleBidPlaced)
+    "englishauctionimplementation_anvil:AuctionCancelled",
+    wrapHandler("AuctionCancelled", handleAuctionSettled)
   );
-  */
+
+  // ============================================================================
+  // Dutch Auction Implementation Events
+  // ============================================================================
+  ponder.on(
+    "dutchauctionimplementation_anvil:AuctionCreated",
+    wrapHandler("DutchAuctionCreated", handleAuctionCreated)
+  );
+
+  ponder.on(
+    "dutchauctionimplementation_anvil:DutchAuctionPurchase",
+    wrapHandler("DutchAuctionPurchase", handleAuctionSettled)
+  );
+
+  ponder.on(
+    "dutchauctionimplementation_anvil:AuctionSettled",
+    wrapHandler("DutchAuctionSettled", handleAuctionSettled)
+  );
+
+  ponder.on(
+    "dutchauctionimplementation_anvil:AuctionCancelled",
+    wrapHandler("DutchAuctionCancelled", handleAuctionSettled)
+  );
 }

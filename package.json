@@ -17,7 +17,8 @@
     "test": "jest --config tests/setup/jest.config.js",
     "test:watch": "jest --config tests/setup/jest.config.js --watch",
     "test:coverage": "jest --config tests/setup/jest.config.js --coverage",
-    "test:ci": "jest --config tests/setup/jest.config.js --ci --coverage"
+    "test:ci": "jest --config tests/setup/jest.config.js --ci --coverage",
+    "test:webhook": "tsx tests/backend-test/webhook-server.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
