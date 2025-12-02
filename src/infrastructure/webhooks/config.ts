@@ -1,18 +1,6 @@
 /**
  * Webhook Configuration
- * 
- * HARDCODED VALUES - Ponder has env caching issues
- * Change values here directly for webhook configuration
  */
-
-const WEBHOOK_CONFIG = {
-  enabled: true,
-  url: 'http://localhost:4000/webhook',
-  secret: 'test-webhook-secret-min-32-chars!!',
-  events: ['*'],
-  retryAttempts: 3,
-  timeout: 5000,
-};
 
 export interface WebhookConfig {
   enabled: boolean;
@@ -25,17 +13,19 @@ export interface WebhookConfig {
 }
 
 /**
- * Load webhook configuration (hardcoded values)
+ * Load webhook configuration from environment variables
  */
 export function loadWebhookConfig(): WebhookConfig {
   return {
-    enabled: WEBHOOK_CONFIG.enabled,
-    url: WEBHOOK_CONFIG.url,
-    secret: WEBHOOK_CONFIG.secret,
-    events: WEBHOOK_CONFIG.events,
-    retryAttempts: WEBHOOK_CONFIG.retryAttempts,
-    timeout: WEBHOOK_CONFIG.timeout,
-    headers: {},
+    enabled: process.env.WEBHOOK_ENABLED === 'true',
+    url: process.env.WEBHOOK_URL || '',
+    secret: process.env.WEBHOOK_SECRET || '',
+    events: process.env.WEBHOOK_EVENTS?.split(',').map((e) => e.trim()) || [],
+    retryAttempts: parseInt(process.env.WEBHOOK_RETRY_ATTEMPTS || '3', 10),
+    timeout: parseInt(process.env.WEBHOOK_TIMEOUT || '5000', 10),
+    headers: process.env.WEBHOOK_HEADERS
+      ? JSON.parse(process.env.WEBHOOK_HEADERS)
+      : {},
   };
 }
 
