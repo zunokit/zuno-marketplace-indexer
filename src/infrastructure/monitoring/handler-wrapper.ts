@@ -10,28 +10,12 @@ import { getFileLogger } from "@/infrastructure/logging/file-logger";
 import { getMetrics, MetricNames } from "@/infrastructure/monitoring/metrics";
 import { webhookClient, type WebhookPayload } from "@/infrastructure/webhooks/client";
 import { webhookConfig } from "@/infrastructure/webhooks/config";
+import { serializeBigInts } from "@/shared/utils/helpers";
 
 const errorHandler = getErrorHandler();
 const logger = getEventLogger();
 const fileLogger = getFileLogger();
 const metrics = getMetrics();
-
-/**
- * Recursively convert BigInt values to strings for JSON serialization
- */
-function serializeBigInts(obj: unknown): unknown {
-  if (obj === null || obj === undefined) return obj;
-  if (typeof obj === "bigint") return obj.toString();
-  if (Array.isArray(obj)) return obj.map(serializeBigInts);
-  if (typeof obj === "object") {
-    const result: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(obj)) {
-      result[key] = serializeBigInts(value);
-    }
-    return result;
-  }
-  return obj;
-}
 
 /**
  * Event name mapping for webhook events
