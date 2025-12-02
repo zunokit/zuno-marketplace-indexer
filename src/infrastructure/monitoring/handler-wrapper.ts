@@ -124,20 +124,12 @@ export function wrapHandler<TEvent = any, TContext = any>(
         logger.logMetric(`${eventName} Processing Time`, processingTime, "ms");
 
         // Trigger webhook after successful event processing
-        fileLogger.logEvent("WEBHOOK_CHECK", "DEBUG", { 
-          enabled: webhookConfig.enabled, 
-          url: webhookConfig.url,
-          events: webhookConfig.events 
-        });
         if (webhookConfig.enabled) {
           const webhookEventName = mapEventName(eventName);
-          const shouldTrigger = webhookClient.shouldTriggerWebhook(webhookEventName);
-          fileLogger.logEvent("WEBHOOK_TRIGGER", "DEBUG", { eventName, webhookEventName, shouldTrigger });
 
-          if (shouldTrigger) {
-            fileLogger.logEvent("WEBHOOK_ENTERED_BLOCK", "DEBUG", { webhookEventName });
+          if (webhookClient.shouldTriggerWebhook(webhookEventName)) {
             try {
-              const chainId = context?.network?.chainId ?? 31337; // Default to anvil
+              const chainId = context?.network?.chainId ?? 31337;
               const payload: WebhookPayload = {
                 event: webhookEventName,
                 chainId,
@@ -152,11 +144,9 @@ export function wrapHandler<TEvent = any, TContext = any>(
               };
 
               // Send webhook (fire and forget)
-              fileLogger.logEvent("WEBHOOK_SENDING", "DEBUG", { event: webhookEventName, url: webhookConfig.url });
               webhookClient
                 .sendWebhook(payload)
                 .then((webhookResult) => {
-                  fileLogger.logEvent("WEBHOOK_RESULT", "DEBUG", { success: webhookResult.success, attempts: webhookResult.attempts, error: webhookResult.error });
                   if (webhookResult.success) {
                     logger.logInfo("Webhook", `Delivered for ${webhookEventName}`, {
                       attempts: webhookResult.attempts,
@@ -177,10 +167,6 @@ export function wrapHandler<TEvent = any, TContext = any>(
                 });
             } catch (error) {
               // Don't let webhook errors break event processing
-              fileLogger.logEvent("WEBHOOK_ERROR", "ERROR", { 
-                webhookEventName, 
-                error: error instanceof Error ? error.message : String(error) 
-              });
               logger.logEventError(
                 "Webhook",
                 error instanceof Error ? error : new Error('Unknown error'),
