@@ -81,9 +81,9 @@ export class FileLogger {
     if (this.consoleEnabled) console.log(logLine);
   }
 
-  public logEvent(eventName: string, phase: "START" | "SUCCESS" | "ERROR", details: any): void {
+  public logEvent(eventName: string, phase: "START" | "SUCCESS" | "ERROR" | "DEBUG", details: any): void {
     const timestamp = this.formatTimestamp();
-    const icon = phase === "START" ? ">>>" : phase === "SUCCESS" ? "OK " : "ERR";
+    const icon = phase === "START" ? ">>>" : phase === "SUCCESS" ? "OK " : phase === "DEBUG" ? "DBG" : "ERR";
     let logLine = `[${timestamp}] [${icon}] ${eventName}`;
     if (details !== undefined) {
       logLine += `\n${JSON.stringify(details, (key, value) => 
