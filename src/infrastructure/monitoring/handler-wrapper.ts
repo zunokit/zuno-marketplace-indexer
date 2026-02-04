@@ -43,6 +43,15 @@ function mapEventName(eventName: string): string {
   return EVENT_NAME_MAP[eventName] || eventName.toLowerCase();
 }
 
+/**
+ * Extract token type from event name
+ */
+function getTokenType(eventName: string): string {
+  if (eventName.startsWith('ERC721')) return 'ERC721';
+  if (eventName.startsWith('ERC1155')) return 'ERC1155';
+  return '';
+}
+
 export type EventHandler<TEvent = any, TContext = any> = (args: {
   event: TEvent;
   context: TContext;
@@ -120,9 +129,10 @@ export function wrapHandler<TEvent = any, TContext = any>(
                 timestamp: Number(event.block.timestamp),
                 data: serializeBigInts({
                   ...event.args,
-                  blockNumber: event.block.number,
+                  tokenType: getTokenType(eventName),
+                  blockNumber: Number(event.block.number),
                   txHash: event.transaction.hash,
-                  logIndex: event.log.logIndex,
+                  logIndex: Number(event.log.logIndex),
                   contractAddress: event.log.address,
                 }) as Record<string, unknown>,
               };

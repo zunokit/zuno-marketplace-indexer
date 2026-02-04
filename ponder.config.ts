@@ -6,7 +6,7 @@
  * This file is generated from Zuno Marketplace ABIs API.
  * To regenerate: pnpm generate-config
  * 
- * Generated: 2025-12-02T00:25:01.312Z
+ * Generated: 2026-02-04T06:16:29.055Z
  * Chains: 1
  * Contracts: 26
  */
@@ -31,7 +31,7 @@ export default createConfig({
   },
 
   contracts: {
-    marketplaceaccesscontrol_anvil: {
+    marketplacetimelock_anvil: {
       chain: "anvil",
       abi: [
         {
@@ -40,125 +40,13 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "ADMIN_ROLE",
+          type: "receive",
+          stateMutability: "payable"
+        },
+        {
+          name: "GRACE_PERIOD",
           type: "function",
           inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "EMERGENCY_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MODERATOR_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "OPERATOR_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "PAUSER_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "VERIFIER_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeRoles",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "currentRoleMembers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
           outputs: [
             {
               name: "",
@@ -169,142 +57,106 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "getActiveRoles",
+          name: "MAX_TIMELOCK_DURATION",
           type: "function",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
+          inputs: [],
           outputs: [
             {
-              name: "activeUserRoles",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "getRoleAdmin",
+          name: "MIN_TIMELOCK_DURATION",
           type: "function",
-          inputs: [
+          inputs: [],
+          outputs: [
             {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
             }
           ],
+          stateMutability: "view"
+        },
+        {
+          name: "TIMELOCK_DURATION",
+          type: "function",
+          inputs: [],
           outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "actionData",
+          type: "function",
+          inputs: [
             {
               name: "",
               type: "bytes32",
               internalType: "bytes32"
             }
           ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoleMemberInfo",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
           outputs: [
             {
-              name: "current",
+              name: "target",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes"
+            },
+            {
+              name: "value",
               type: "uint256",
               internalType: "uint256"
             },
             {
-              name: "maximum",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "grantRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "grantRoleSimple",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "hasPermission",
-          type: "function",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "permission",
+              name: "description",
               type: "string",
               internalType: "string"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "hasRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
             },
             {
-              name: "account",
+              name: "proposer",
               type: "address",
               internalType: "address"
             }
           ],
+          stateMutability: "view"
+        },
+        {
+          name: "cancelAction",
+          type: "function",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "cancelledActions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
           outputs: [
             {
               name: "",
@@ -315,20 +167,136 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "maxRoleMembers",
+          name: "customTimelockDuration",
           type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
+          inputs: [],
           outputs: [
             {
               name: "",
               type: "uint256",
               internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "executeAction",
+          type: "function",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "returnData",
+              type: "bytes",
+              internalType: "bytes"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "executedActions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActionData",
+          type: "function",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "action",
+              type: "tuple",
+              components: [
+                {
+                  name: "target",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "data",
+                  type: "bytes",
+                  internalType: "bytes"
+                },
+                {
+                  name: "value",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "proposer",
+                  type: "address",
+                  internalType: "address"
+                }
+              ],
+              internalType: "struct MarketplaceTimelock.ActionData"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getTimeRemaining",
+          type: "function",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "timeRemaining",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isActionReady",
+          type: "function",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "isReady",
+              type: "bool",
+              internalType: "bool"
             }
           ],
           stateMutability: "view"
@@ -354,110 +322,54 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "renounceRole",
+          name: "scheduleAction",
           type: "function",
           inputs: [
             {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "callerConfirmation",
+              name: "target",
               type: "address",
               internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "revokeRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
             },
             {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "revokeRoleSimple",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
+              name: "data",
+              type: "bytes",
+              internalType: "bytes"
             },
             {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setRoleActive",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setRoleMemberLimit",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "maxMembers",
+              name: "value",
               type: "uint256",
               internalType: "uint256"
+            },
+            {
+              name: "description",
+              type: "string",
+              internalType: "string"
             }
           ],
-          outputs: [],
+          outputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
           stateMutability: "nonpayable"
         },
         {
-          name: "supportsInterface",
+          name: "scheduledActions",
           type: "function",
           inputs: [
             {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
             }
           ],
           outputs: [
             {
               name: "",
-              type: "bool",
-              internalType: "bool"
+              type: "uint256",
+              internalType: "uint256"
             }
           ],
           stateMutability: "view"
@@ -474,6 +386,112 @@ export default createConfig({
           ],
           outputs: [],
           stateMutability: "nonpayable"
+        },
+        {
+          name: "updateTimelockDuration",
+          type: "function",
+          inputs: [
+            {
+              name: "newDuration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "ActionCancelled",
+          type: "event",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "canceller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "ActionExecuted",
+          type: "event",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "executor",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "returnData",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "ActionScheduled",
+          type: "event",
+          inputs: [
+            {
+              name: "actionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "target",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "data",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes"
+            },
+            {
+              name: "value",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "executeTime",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "description",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            },
+            {
+              name: "proposer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
         },
         {
           name: "OwnershipTransferred",
@@ -495,110 +513,23 @@ export default createConfig({
           anonymous: false
         },
         {
-          name: "RoleAdminChanged",
+          name: "TimelockDurationUpdated",
           type: "event",
           inputs: [
             {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "previousAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "newAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleGranted",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleGrantedSimple",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleMemberLimitUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "oldLimit",
+              name: "oldDuration",
               type: "uint256",
               indexed: false,
               internalType: "uint256"
             },
             {
-              name: "newLimit",
+              name: "newDuration",
               type: "uint256",
               indexed: false,
               internalType: "uint256"
             },
             {
-              name: "updatedBy",
+              name: "updater",
               type: "address",
               indexed: true,
               internalType: "address"
@@ -607,156 +538,1227 @@ export default createConfig({
           anonymous: false
         },
         {
-          name: "RoleRevoked",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleRevokedSimple",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleStatusChanged",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "wasActive",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "isActive",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "changedBy",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AccessControlBadConfirmation",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AccessControlUnauthorizedAccount",
+          name: "OwnableInvalidOwner",
           type: "error",
           inputs: [
             {
-              name: "account",
+              name: "owner",
               type: "address",
               internalType: "address"
-            },
-            {
-              name: "neededRole",
-              type: "bytes32",
-              internalType: "bytes32"
             }
           ]
         },
         {
-          name: "MarketplaceAccessControl__CannotDeactivateAdminRole",
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__InvalidMemberLimit",
+          name: "Timelock__ActionAlreadyExecuted",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__MemberLimitBelowCurrent",
+          name: "Timelock__ActionAlreadyScheduled",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__RoleAlreadyGranted",
+          name: "Timelock__ActionCancelled",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__RoleMemberLimitExceeded",
+          name: "Timelock__ActionNotScheduled",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__RoleNotActive",
+          name: "Timelock__ExecutionFailed",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__RoleNotGranted",
+          name: "Timelock__GracePeriodExpired",
           type: "error",
           inputs: []
         },
         {
-          name: "MarketplaceAccessControl__ZeroAddress",
+          name: "Timelock__InvalidTimelockDuration",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Timelock__TimelockNotExpired",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Timelock__ZeroAddress",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+    },
+    offermanager_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_accessControl",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_feeManager",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "MAX_OFFER_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "MIN_OFFER_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "acceptCollectionOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "acceptNFTOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "accessControl",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract MarketplaceAccessControl"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeCollectionOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeNFTOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeOfferIndex",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeTraitOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "cancelOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "reason",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "collectionOfferIds",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "collectionOfferProgress",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "filled",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "createdAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "collectionOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "quantity",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "createCollectionOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "quantity",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "payable"
+        },
+        {
+          name: "createNFTOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "payable"
+        },
+        {
+          name: "createTraitOffer",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "traitType",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "traitValue",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "quantity",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "payable"
+        },
+        {
+          name: "excludedTokens",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "feeManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract AdvancedFeeManager"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "offerType",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferType"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getOffersByCollection",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "offerType",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferType"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getOffersByOfferer",
+          type: "function",
+          inputs: [
+            {
+              name: "offerer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "offerType",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferType"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "nftOfferDetails",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "acceptedBy",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "nftOfferIds",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "nftOfferTiming",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "createdAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "acceptedAt",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "nftOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "offerCounter",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "pause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "totalOffersAccepted",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "totalOffersCreated",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "traitOfferDetails",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "traitType",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "traitValue",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "expiration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "createdAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "filled",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "traitOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "quantity",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum OfferManager.OfferStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "unpause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "userOffers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "CollectionOfferFilled",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OfferAccepted",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "accepter",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OfferCancelled",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "reason",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OfferCreated",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "offerType",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum OfferManager.OfferType"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OfferExpired",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "offerer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "TraitOfferFilled",
+          type: "event",
+          inputs: [
+            {
+              name: "offerId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "traitType",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            },
+            {
+              name: "traitValue",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Unpaused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidCollection",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidDuration",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidListing",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidParameters",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidPrice",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidQuantity",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__ListingExpired",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NotTheOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__TransferToSellerFailed",
           type: "error",
           inputs: []
         },
@@ -786,9 +1788,20 @@ export default createConfig({
           name: "ReentrancyGuardReentrantCall",
           type: "error",
           inputs: []
+        },
+        {
+          name: "SafeERC20FailedOperation",
+          type: "error",
+          inputs: [
+            {
+              name: "token",
+              type: "address",
+              internalType: "address"
+            }
+          ]
         }
       ],
-      address: "0x5fbdb2315678afecb367f032d93f642f64180aa3"
+      address: "0x68b1d87f95878fe05b998f19b66f4baba5de1aed"
     },
     marketplacevalidator_anvil: {
       chain: "anvil",
@@ -2461,7 +3474,7 @@ export default createConfig({
       ],
       address: "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9"
     },
-    marketplacetimelock_anvil: {
+    marketplaceaccesscontrol_anvil: {
       chain: "anvil",
       abi: [
         {
@@ -2470,63 +3483,98 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          type: "receive",
-          stateMutability: "payable"
-        },
-        {
-          name: "GRACE_PERIOD",
+          name: "ADMIN_ROLE",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
+              type: "bytes32",
+              internalType: "bytes32"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "MAX_TIMELOCK_DURATION",
+          name: "DEFAULT_ADMIN_ROLE",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
+              type: "bytes32",
+              internalType: "bytes32"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "MIN_TIMELOCK_DURATION",
+          name: "EMERGENCY_ROLE",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
+              type: "bytes32",
+              internalType: "bytes32"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "TIMELOCK_DURATION",
+          name: "MODERATOR_ROLE",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
+              type: "bytes32",
+              internalType: "bytes32"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "actionData",
+          name: "OPERATOR_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "PAUSER_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "VERIFIER_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeRoles",
           type: "function",
           inputs: [
             {
@@ -2537,105 +3585,143 @@ export default createConfig({
           ],
           outputs: [
             {
-              name: "target",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "data",
-              type: "bytes",
-              internalType: "bytes"
-            },
-            {
-              name: "value",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "description",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "proposer",
-              type: "address",
-              internalType: "address"
+              name: "",
+              type: "bool",
+              internalType: "bool"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "cancelAction",
+          name: "currentRoleMembers",
           type: "function",
           inputs: [
             {
-              name: "actionId",
+              name: "",
               type: "bytes32",
               internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveRoles",
+          type: "function",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "activeUserRoles",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoleAdmin",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoleMemberInfo",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "current",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "maximum",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "grantRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
             }
           ],
           outputs: [],
           stateMutability: "nonpayable"
         },
         {
-          name: "cancelledActions",
+          name: "grantRoleSimple",
           type: "function",
           inputs: [
             {
-              name: "",
+              name: "role",
               type: "bytes32",
               internalType: "bytes32"
-            }
-          ],
-          outputs: [
+            },
             {
-              name: "",
-              type: "bool",
-              internalType: "bool"
+              name: "account",
+              type: "address",
+              internalType: "address"
             }
           ],
-          stateMutability: "view"
-        },
-        {
-          name: "customTimelockDuration",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "executeAction",
-          type: "function",
-          inputs: [
-            {
-              name: "actionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "returnData",
-              type: "bytes",
-              internalType: "bytes"
-            }
-          ],
+          outputs: [],
           stateMutability: "nonpayable"
         },
         {
-          name: "executedActions",
+          name: "hasPermission",
           type: "function",
           inputs: [
             {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
+              name: "account",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "permission",
+              type: "string",
+              internalType: "string"
             }
           ],
           outputs: [
@@ -2648,85 +3734,44 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "getActionData",
+          name: "hasRole",
           type: "function",
           inputs: [
             {
-              name: "actionId",
+              name: "role",
               type: "bytes32",
               internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
             }
           ],
           outputs: [
             {
-              name: "action",
-              type: "tuple",
-              components: [
-                {
-                  name: "target",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "data",
-                  type: "bytes",
-                  internalType: "bytes"
-                },
-                {
-                  name: "value",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "description",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "proposer",
-                  type: "address",
-                  internalType: "address"
-                }
-              ],
-              internalType: "struct MarketplaceTimelock.ActionData"
+              name: "",
+              type: "bool",
+              internalType: "bool"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "getTimeRemaining",
+          name: "maxRoleMembers",
           type: "function",
           inputs: [
             {
-              name: "actionId",
+              name: "",
               type: "bytes32",
               internalType: "bytes32"
             }
           ],
           outputs: [
             {
-              name: "timeRemaining",
+              name: "",
               type: "uint256",
               internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "isActionReady",
-          type: "function",
-          inputs: [
-            {
-              name: "actionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "isReady",
-              type: "bool",
-              internalType: "bool"
             }
           ],
           stateMutability: "view"
@@ -2752,54 +3797,110 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "scheduleAction",
+          name: "renounceRole",
           type: "function",
           inputs: [
             {
-              name: "target",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "data",
-              type: "bytes",
-              internalType: "bytes"
-            },
-            {
-              name: "value",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "description",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [
-            {
-              name: "actionId",
+              name: "role",
               type: "bytes32",
               internalType: "bytes32"
+            },
+            {
+              name: "callerConfirmation",
+              type: "address",
+              internalType: "address"
             }
           ],
+          outputs: [],
           stateMutability: "nonpayable"
         },
         {
-          name: "scheduledActions",
+          name: "revokeRole",
           type: "function",
           inputs: [
             {
-              name: "",
+              name: "role",
               type: "bytes32",
               internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "revokeRoleSimple",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setRoleActive",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setRoleMemberLimit",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "maxMembers",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
             }
           ],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
+              type: "bool",
+              internalType: "bool"
             }
           ],
           stateMutability: "view"
@@ -2816,112 +3917,6 @@ export default createConfig({
           ],
           outputs: [],
           stateMutability: "nonpayable"
-        },
-        {
-          name: "updateTimelockDuration",
-          type: "function",
-          inputs: [
-            {
-              name: "newDuration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "ActionCancelled",
-          type: "event",
-          inputs: [
-            {
-              name: "actionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "canceller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "ActionExecuted",
-          type: "event",
-          inputs: [
-            {
-              name: "actionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "executor",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "returnData",
-              type: "bytes",
-              indexed: false,
-              internalType: "bytes"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "ActionScheduled",
-          type: "event",
-          inputs: [
-            {
-              name: "actionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "target",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "data",
-              type: "bytes",
-              indexed: false,
-              internalType: "bytes"
-            },
-            {
-              name: "value",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "executeTime",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "description",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            },
-            {
-              name: "proposer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
         },
         {
           name: "OwnershipTransferred",
@@ -2943,29 +3938,270 @@ export default createConfig({
           anonymous: false
         },
         {
-          name: "TimelockDurationUpdated",
+          name: "RoleAdminChanged",
           type: "event",
           inputs: [
             {
-              name: "oldDuration",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
             },
             {
-              name: "newDuration",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
+              name: "previousAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
             },
             {
-              name: "updater",
+              name: "newAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleGranted",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
               type: "address",
               indexed: true,
               internalType: "address"
             }
           ],
           anonymous: false
+        },
+        {
+          name: "RoleGrantedSimple",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleMemberLimitUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "oldLimit",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newLimit",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "updatedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleRevoked",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleRevokedSimple",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleStatusChanged",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "wasActive",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "isActive",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "changedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AccessControlBadConfirmation",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AccessControlUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "neededRole",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ]
+        },
+        {
+          name: "MarketplaceAccessControl__CannotDeactivateAdminRole",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__InvalidMemberLimit",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__MemberLimitBelowCurrent",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__RoleAlreadyGranted",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__RoleMemberLimitExceeded",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__RoleNotActive",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__RoleNotGranted",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "MarketplaceAccessControl__ZeroAddress",
+          type: "error",
+          inputs: []
         },
         {
           name: "OwnableInvalidOwner",
@@ -2993,54 +4229,9 @@ export default createConfig({
           name: "ReentrancyGuardReentrantCall",
           type: "error",
           inputs: []
-        },
-        {
-          name: "Timelock__ActionAlreadyExecuted",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__ActionAlreadyScheduled",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__ActionCancelled",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__ActionNotScheduled",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__ExecutionFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__GracePeriodExpired",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__InvalidTimelockDuration",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__TimelockNotExpired",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Timelock__ZeroAddress",
-          type: "error",
-          inputs: []
         }
       ],
-      address: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+      address: "0x5fbdb2315678afecb367f032d93f642f64180aa3"
     },
     userhub_anvil: {
       chain: "anvil",
@@ -3569,1952 +4760,6 @@ export default createConfig({
       ],
       address: "0xc3e53f4d16ae77db1c982e75a937b9f60fe63690"
     },
-    offermanager_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "_accessControl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_feeManager",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "MAX_OFFER_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MIN_OFFER_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "acceptCollectionOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "acceptNFTOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "accessControl",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract MarketplaceAccessControl"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeCollectionOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeNFTOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeOfferIndex",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeTraitOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "cancelOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "reason",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "collectionOfferIds",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "collectionOfferProgress",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "filled",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "createdAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "collectionOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "quantity",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "createCollectionOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "quantity",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "payable"
-        },
-        {
-          name: "createNFTOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "payable"
-        },
-        {
-          name: "createTraitOffer",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "traitType",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "traitValue",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "quantity",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "payable"
-        },
-        {
-          name: "excludedTokens",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "feeManager",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract AdvancedFeeManager"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "offerType",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferType"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getOffersByCollection",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "offerType",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferType"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getOffersByOfferer",
-          type: "function",
-          inputs: [
-            {
-              name: "offerer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "offerType",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferType"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "nftOfferDetails",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "acceptedBy",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "nftOfferIds",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "nftOfferTiming",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "createdAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "acceptedAt",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "nftOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "offerCounter",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "pause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "paused",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "totalOffersAccepted",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "totalOffersCreated",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "traitOfferDetails",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "traitType",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "traitValue",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "expiration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "createdAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "filled",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "traitOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "quantity",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum OfferManager.OfferStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "unpause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "userOffers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "CollectionOfferFilled",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OfferAccepted",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "accepter",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OfferCancelled",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "reason",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OfferCreated",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "offerType",
-              type: "uint8",
-              indexed: false,
-              internalType: "enum OfferManager.OfferType"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OfferExpired",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "offerer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Paused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "TraitOfferFilled",
-          type: "event",
-          inputs: [
-            {
-              name: "offerId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "traitType",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            },
-            {
-              name: "traitValue",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "EnforcedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidCollection",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidDuration",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidListing",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidParameters",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidPrice",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidQuantity",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__ListingExpired",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NotTheOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__TransferToSellerFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "SafeERC20FailedOperation",
-          type: "error",
-          inputs: [
-            {
-              name: "token",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        }
-      ],
-      address: "0x68b1d87f95878fe05b998f19b66f4baba5de1aed"
-    },
-    erc721collectionfactory_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "contractType",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "createERC721Collection",
-          type: "function",
-          inputs: [
-            {
-              name: "params",
-              type: "tuple",
-              components: [
-                {
-                  name: "name",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "symbol",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "owner",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "description",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "mintPrice",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "royaltyFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "maxSupply",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "mintLimitPerWallet",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "mintStartTime",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "allowlistMintPrice",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "publicMintPrice",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "allowlistStageDuration",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tokenURI",
-                  type: "string",
-                  internalType: "string"
-                }
-              ],
-              internalType: "struct CollectionParams"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "erc721CollectionImplementation",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getSupportedStandards",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string[]",
-              internalType: "string[]"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "getTotalCollections",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "isActive",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "isValidCollection",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "supportsInterface",
-          type: "function",
-          inputs: [
-            {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "version",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "ERC721CollectionCreated",
-          type: "event",
-          inputs: [
-            {
-              name: "collectionAddress",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "creator",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "ImplementationDeployed",
-          type: "event",
-          inputs: [
-            {
-              name: "implementation",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "FailedDeployment",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "InsufficientBalance",
-          type: "error",
-          inputs: [
-            {
-              name: "balance",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "needed",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ]
-        }
-      ],
-      address: "0x0dcd1bf9a1b36ce34237eeafef220932846bcd82"
-    },
-    feeregistry_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "admin",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "baseFee",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "feeManager",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "royaltyManager",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "calculateAllFees",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "salePrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "breakdown",
-              type: "tuple",
-              components: [
-                {
-                  name: "platformFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "royaltyFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "royaltyRecipient",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "totalFees",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "sellerProceeds",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct IFeeRegistry.FeeBreakdown"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "calculatePlatformFee",
-          type: "function",
-          inputs: [
-            {
-              name: "salePrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "calculateRoyalty",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "salePrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "recipient",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBaseFeeContract",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getFeeManagerContract",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPlatformFeePercentage",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoleAdmin",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoyaltyManagerContract",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "grantRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "hasRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "renounceRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "callerConfirmation",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "revokeRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "supportsInterface",
-          type: "function",
-          inputs: [
-            {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "updateFeeContracts",
-          type: "function",
-          inputs: [
-            {
-              name: "baseFee",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "feeManager",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "royaltyManager",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "FeeContractsUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "baseFee",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "feeManager",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "royaltyManager",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleAdminChanged",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "previousAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "newAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleGranted",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleRevoked",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AccessControlBadConfirmation",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AccessControlUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "neededRole",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ]
-        },
-        {
-          name: "FeeRegistry__ContractNotSet",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "FeeRegistry__ZeroAddress",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0xa85233c63b9ee964add6f2cffe00fd84eb32338f"
-    },
     fee_anvil: {
       chain: "anvil",
       abi: [
@@ -5739,1216 +4984,6 @@ export default createConfig({
         }
       ],
       address: "0x0165878a594ca255338adfa4d48449f69242eb8f"
-    },
-    erc721nftexchange_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "BPS_DENOMINATOR",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "batchBuyNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "batchCancelListing",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "batchIsNFTListed",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContracts",
-              type: "address[]",
-              internalType: "address[]"
-            },
-            {
-              name: "tokenIds",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            }
-          ],
-          outputs: [
-            {
-              name: "listed",
-              type: "bool[]",
-              internalType: "bool[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "batchListNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "m_tokenIds",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "m_prices",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "m_listingDuration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "buyNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "cancelListing",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "contractType",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "get24hVolume",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveListingByNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveListingsBySeller",
-          type: "function",
-          inputs: [
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "activeListings",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveListingsCount",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "count",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBatchPriceBreakdown",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          outputs: [
-            {
-              name: "totalPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "prices",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "royalties",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "takerFees",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "realityPrices",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "currentTakerFee",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBuyerSeesPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getFloorDiff",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "int256",
-              internalType: "int256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getFloorPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getGeneratedListingId",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "m_tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "m_sender",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getLadderPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getListingsByCollection",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getListingsBySeller",
-          type: "function",
-          inputs: [
-            {
-              name: "m_seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoyaltyInfo",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "m_tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "m_salePrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "receiver",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "royaltyAmount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getTakerFee",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getTopTraitPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "initialize",
-          type: "function",
-          inputs: [
-            {
-              name: "m_marketplaceWallet",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "m_owner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "isActive",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "isNFTListed",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "isListed",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "listNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "m_contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "m_tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "m_price",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "m_listingDuration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "marketplaceWallet",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "s_activeListings",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "s_listings",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "contractAddress",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "price",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "listingDuration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "listingStart",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum BaseNFTExchange.ListingStatus"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "s_listingsByCollection",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "s_listingsBySeller",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "s_marketplaceWallet",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "s_takerFee",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "supportedStandard",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "supportsInterface",
-          type: "function",
-          inputs: [
-            {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateMarketplaceWallet",
-          type: "function",
-          inputs: [
-            {
-              name: "m_newMarketplaceWallet",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateTakerFee",
-          type: "function",
-          inputs: [
-            {
-              name: "m_newTakerFee",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "version",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "Initialized",
-          type: "event",
-          inputs: [
-            {
-              name: "version",
-              type: "uint64",
-              indexed: false,
-              internalType: "uint64"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "ListingCancelled",
-          type: "event",
-          inputs: [
-            {
-              name: "listingId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "contractAddress",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "MarketplaceWalletUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "oldWallet",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newWallet",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "NFTListed",
-          type: "event",
-          inputs: [
-            {
-              name: "listingId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "contractAddress",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "price",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "NFTSold",
-          type: "event",
-          inputs: [
-            {
-              name: "listingId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "contractAddress",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "buyer",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "price",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "PaymentDistributed",
-          type: "event",
-          inputs: [
-            {
-              name: "listingId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "buyer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "totalPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "sellerAmount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "marketplaceFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "royaltyAmount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "royaltyRecipient",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "TakerFeeUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "oldFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "InvalidInitialization",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__ArrayLengthMismatch",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__DurationMustBeGreaterThanZero",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InsufficientPayment",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidMarketplaceWallet",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InvalidTakerFee",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__ListingExpired",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__MarketplaceNotApproved",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NFTAlreadyListed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NFTNotActive",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NotTheOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__PriceMustBeGreaterThanZero",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__TransferToSellerFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NotInitializing",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "PaymentDistribution__InsufficientBalance",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "PaymentDistribution__InvalidAmount",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "PaymentDistribution__TransferFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "PaymentDistribution__ZeroAddress",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0x8a791620dd6260079bf849dc5567adc3f2fdc318"
     },
     listinghistorytracker_anvil: {
       chain: "anvil",
@@ -7777,7 +5812,7 @@ export default createConfig({
       ],
       address: "0x59b670e9fa9d0a427751af201d676719a970857b"
     },
-    erc1155collectionfactory_anvil: {
+    erc721collectionfactory_anvil: {
       chain: "anvil",
       abi: [
         {
@@ -7799,7 +5834,7 @@ export default createConfig({
           stateMutability: "pure"
         },
         {
-          name: "createERC1155Collection",
+          name: "createERC721Collection",
           type: "function",
           inputs: [
             {
@@ -7885,7 +5920,7 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "erc1155CollectionImplementation",
+          name: "erc721CollectionImplementation",
           type: "function",
           inputs: [],
           outputs: [
@@ -7988,7 +6023,7 @@ export default createConfig({
           stateMutability: "pure"
         },
         {
-          name: "ERC1155CollectionCreated",
+          name: "ERC721CollectionCreated",
           type: "event",
           inputs: [
             {
@@ -8041,7 +6076,7 @@ export default createConfig({
           ]
         }
       ],
-      address: "0x9a676e781a523b5d0c0e43731313a708cb607508"
+      address: "0x0dcd1bf9a1b36ce34237eeafef220932846bcd82"
     },
     englishauctionimplementation_anvil: {
       chain: "anvil",
@@ -9164,25 +7199,6 @@ export default createConfig({
           anonymous: false
         },
         {
-          name: "AuctionCancelledWithRefunds",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "bidCount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
           name: "AuctionCreated",
           type: "event",
           inputs: [
@@ -9563,11 +7579,6 @@ export default createConfig({
           inputs: []
         },
         {
-          name: "Auction__CannotCancelWithBids",
-          type: "error",
-          inputs: []
-        },
-        {
           name: "Auction__InsufficientBidIncrement",
           type: "error",
           inputs: []
@@ -9702,7 +7713,7 @@ export default createConfig({
       ],
       address: "0x0b306bf915c4d645ff596e518faf3f9669b97016"
     },
-    erc1155nftexchange_anvil: {
+    erc721nftexchange_anvil: {
       chain: "anvil",
       abi: [
         {
@@ -9750,6 +7761,25 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
+          name: "batchCleanupExpiredListings",
+          type: "function",
+          inputs: [
+            {
+              name: "listingIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [
+            {
+              name: "cleanedCount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
           name: "batchIsNFTListed",
           type: "function",
           inputs: [
@@ -9788,11 +7818,6 @@ export default createConfig({
               internalType: "uint256[]"
             },
             {
-              name: "m_amounts",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
               name: "m_prices",
               type: "uint256[]",
               internalType: "uint256[]"
@@ -9820,24 +7845,6 @@ export default createConfig({
           stateMutability: "payable"
         },
         {
-          name: "buyNFT",
-          type: "function",
-          inputs: [
-            {
-              name: "m_listingId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "m_amount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
           name: "cancelListing",
           type: "function",
           inputs: [
@@ -9848,6 +7855,25 @@ export default createConfig({
             }
           ],
           outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "cleanupExpiredListing",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "cleaned",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
           stateMutability: "nonpayable"
         },
         {
@@ -9950,6 +7976,50 @@ export default createConfig({
           stateMutability: "view"
         },
         {
+          name: "getBatchPriceBreakdown",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [
+            {
+              name: "totalPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "prices",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "royalties",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "takerFees",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "realityPrices",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "currentTakerFee",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
           name: "getBuyerSeesPrice",
           type: "function",
           inputs: [
@@ -9964,6 +8034,25 @@ export default createConfig({
               name: "",
               type: "uint256",
               internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getExpiredListingsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "expiredListings",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
             }
           ],
           stateMutability: "view"
@@ -10098,6 +8187,25 @@ export default createConfig({
           stateMutability: "view"
         },
         {
+          name: "getRealListingStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum BaseNFTExchange.ListingStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
           name: "getRoyaltyInfo",
           type: "function",
           inputs: [
@@ -10193,6 +8301,1346 @@ export default createConfig({
           outputs: [
             {
               name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isListingExpired",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "isExpired",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isNFTListed",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "isListed",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "listNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "m_tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "m_price",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "m_listingDuration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "marketplaceWallet",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "s_activeListings",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "s_listings",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "price",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "listingDuration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "listingStart",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum BaseNFTExchange.ListingStatus"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "s_listingsByCollection",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "s_listingsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "s_marketplaceWallet",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "s_takerFee",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "supportedStandard",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "pure"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateMarketplaceWallet",
+          type: "function",
+          inputs: [
+            {
+              name: "m_newMarketplaceWallet",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateTakerFee",
+          type: "function",
+          inputs: [
+            {
+              name: "m_newTakerFee",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "version",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "pure"
+        },
+        {
+          name: "Initialized",
+          type: "event",
+          inputs: [
+            {
+              name: "version",
+              type: "uint64",
+              indexed: false,
+              internalType: "uint64"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "ListingCancelled",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "ListingExpired",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "expiredAt",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "MarketplaceWalletUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "oldWallet",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newWallet",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "NFTListed",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "price",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "NFTSold",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "buyer",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "price",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "PaymentDistributed",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "buyer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "totalPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "sellerAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "marketplaceFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "royaltyAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "royaltyRecipient",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "TakerFeeUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "oldFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "InvalidInitialization",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__ArrayLengthMismatch",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__DurationMustBeGreaterThanZero",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InsufficientPayment",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidMarketplaceWallet",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InvalidTakerFee",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__ListingExpired",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__MarketplaceNotApproved",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NFTAlreadyListed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NFTNotActive",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NotTheOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__PriceMustBeGreaterThanZero",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__TransferToSellerFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NotInitializing",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "PaymentDistribution__InsufficientBalance",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "PaymentDistribution__InvalidAmount",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "PaymentDistribution__TransferFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "PaymentDistribution__ZeroAddress",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0x8a791620dd6260079bf849dc5567adc3f2fdc318"
+    },
+    erc1155nftexchange_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "BPS_DENOMINATOR",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "batchBuyNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "batchCancelListing",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "batchCleanupExpiredListings",
+          type: "function",
+          inputs: [
+            {
+              name: "listingIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [
+            {
+              name: "cleanedCount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "batchIsNFTListed",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContracts",
+              type: "address[]",
+              internalType: "address[]"
+            },
+            {
+              name: "tokenIds",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            }
+          ],
+          outputs: [
+            {
+              name: "listed",
+              type: "bool[]",
+              internalType: "bool[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "batchListNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "m_tokenIds",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "m_amounts",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "m_prices",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "m_listingDuration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "buyNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "buyNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "m_amount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "cancelListing",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "cleanupExpiredListing",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "cleaned",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "contractType",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "pure"
+        },
+        {
+          name: "get24hVolume",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveListingByNFT",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveListingsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "activeListings",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveListingsCount",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "count",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBuyerSeesPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getExpiredListingsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "expiredListings",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getFloorDiff",
+          type: "function",
+          inputs: [
+            {
+              name: "m_listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "int256",
+              internalType: "int256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getFloorPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getGeneratedListingId",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "m_tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "m_sender",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getLadderPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getListingsByCollection",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getListingsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "m_seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRealListingStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum BaseNFTExchange.ListingStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoyaltyInfo",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "m_tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "m_salePrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "receiver",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "royaltyAmount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getTakerFee",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getTopTraitPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "m_contractAddress",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "initialize",
+          type: "function",
+          inputs: [
+            {
+              name: "m_marketplaceWallet",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "m_owner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "isActive",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isListingExpired",
+          type: "function",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "isExpired",
               type: "bool",
               internalType: "bool"
             }
@@ -10585,6 +10033,43 @@ export default createConfig({
           anonymous: false
         },
         {
+          name: "ListingExpired",
+          type: "event",
+          inputs: [
+            {
+              name: "listingId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "expiredAt",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
           name: "MarketplaceWalletUpdated",
           type: "event",
           inputs: [
@@ -10905,6 +10390,495 @@ export default createConfig({
         }
       ],
       address: "0xb7f8bc63bbcad18155201308c8f3540b07f84f5e"
+    },
+    feeregistry_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "admin",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "baseFee",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "feeManager",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "royaltyManager",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "DEFAULT_ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "calculateAllFees",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "salePrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "breakdown",
+              type: "tuple",
+              components: [
+                {
+                  name: "platformFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "royaltyFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "royaltyRecipient",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "totalFees",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "sellerProceeds",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct IFeeRegistry.FeeBreakdown"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "calculatePlatformFee",
+          type: "function",
+          inputs: [
+            {
+              name: "salePrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "calculateRoyalty",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "salePrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "recipient",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBaseFeeContract",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getFeeManagerContract",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPlatformFeePercentage",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoleAdmin",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoyaltyManagerContract",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "grantRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "hasRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "renounceRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "callerConfirmation",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "revokeRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "updateFeeContracts",
+          type: "function",
+          inputs: [
+            {
+              name: "baseFee",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "feeManager",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "royaltyManager",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "FeeContractsUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "baseFee",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "feeManager",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "royaltyManager",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleAdminChanged",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "previousAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "newAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleGranted",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleRevoked",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AccessControlBadConfirmation",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AccessControlUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "neededRole",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ]
+        },
+        {
+          name: "FeeRegistry__ContractNotSet",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "FeeRegistry__ZeroAddress",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0xa85233c63b9ee964add6f2cffe00fd84eb32338f"
     },
     exchangeregistry_anvil: {
       chain: "anvil",
@@ -12017,1905 +11991,115 @@ export default createConfig({
       ],
       address: "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512"
     },
-    advancedfeemanager_anvil: {
+    erc1155collectionfactory_anvil: {
       chain: "anvil",
       abi: [
         {
           type: "constructor",
-          inputs: [
-            {
-              name: "_accessControl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_feeRecipient",
-              type: "address",
-              internalType: "address"
-            }
-          ],
+          inputs: [],
           stateMutability: "nonpayable"
         },
         {
-          name: "EMERGENCY_FEE_CAP",
+          name: "contractType",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "accessControl",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract MarketplaceAccessControl"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "baseFeeConfig",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "makerFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "takerFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "listingFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "auctionFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "bundleFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "batchUpdateUserVolumes",
-          type: "function",
-          inputs: [
-            {
-              name: "users",
-              type: "address[]",
-              internalType: "address[]"
-            },
-            {
-              name: "volumes",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "calculateFees",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "salePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "isMaker",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [
-            {
-              name: "finalFee",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "appliedDiscount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "checkTierUpgradeEligibility",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "canUpgrade",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "nextTierId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "volumeNeeded",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "collectionFeeOverrides",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "makerFeeOverride",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "takerFeeOverride",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "discountBps",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "hasOverride",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "isVerified",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "setAt",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "emergencyPause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "feeRecipient",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "feeTierConfigs",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "volumeThreshold",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "discountBps",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "tierName",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllFeeTierConfigs",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "tierConfigs",
-              type: "tuple[]",
-              components: [
-                {
-                  name: "volumeThreshold",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tierName",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct FeeTierConfig[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBaseFeeConfig",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "config",
-              type: "tuple",
-              components: [
-                {
-                  name: "makerFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "takerFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "listingFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "auctionFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "bundleFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct FeeConfig"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getCollectionFeeOverride",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "feeOverride",
-              type: "tuple",
-              components: [
-                {
-                  name: "makerFeeOverride",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "takerFeeOverride",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "hasOverride",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "isVerified",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "setAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct CollectionFeeOverride"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getEffectiveFeeRate",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "isMaker",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [
-            {
-              name: "effectiveRate",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getFeeTierConfig",
-          type: "function",
-          inputs: [
-            {
-              name: "tierId",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "tierConfig",
-              type: "tuple",
-              components: [
-                {
-                  name: "volumeThreshold",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tierName",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct FeeTierConfig"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getFeeTierCount",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "count",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getUserFeeTier",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "tier",
-              type: "tuple",
-              components: [
-                {
-                  name: "tierId",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "lastUpdated",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct FeeTier"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getUserVIPStatus",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "vipData",
-              type: "tuple",
-              components: [
-                {
-                  name: "isVIP",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "vipDiscountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "vipExpiryTimestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "vipTier",
-                  type: "string",
-                  internalType: "string"
-                }
-              ],
-              internalType: "struct VIPStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getUserVolumeData",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "volumeData",
-              type: "tuple",
-              components: [
-                {
-                  name: "totalVolume",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "last30DaysVolume",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "lastTradeTimestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tradeCount",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct UserVolumeData"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "paused",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setCollectionFeeOverride",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "feeOverride",
-              type: "tuple",
-              components: [
-                {
-                  name: "makerFeeOverride",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "takerFeeOverride",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "hasOverride",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "isVerified",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "setAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct CollectionFeeOverride"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "totalMarketplaceVolume",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "unpause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateBaseFeeConfig",
-          type: "function",
-          inputs: [
-            {
-              name: "newConfig",
-              type: "tuple",
-              components: [
-                {
-                  name: "makerFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "takerFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "listingFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "auctionFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "bundleFee",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct FeeConfig"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateFeeRecipient",
-          type: "function",
-          inputs: [
-            {
-              name: "newFeeRecipient",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateFeeTier",
-          type: "function",
-          inputs: [
-            {
-              name: "tierId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "tierConfig",
-              type: "tuple",
-              components: [
-                {
-                  name: "volumeThreshold",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "discountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tierName",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct FeeTierConfig"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateUserVolume",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tradeVolume",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateVIPStatus",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "vipData",
-              type: "tuple",
-              components: [
-                {
-                  name: "isVIP",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "vipDiscountBps",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "vipExpiryTimestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "vipTier",
-                  type: "string",
-                  internalType: "string"
-                }
-              ],
-              internalType: "struct VIPStatus"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "userFeeTiers",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "tierId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "discountBps",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "lastUpdated",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "userVolumeData",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "totalVolume",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "last30DaysVolume",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "lastTradeTimestamp",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "tradeCount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "vipStatus",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "isVIP",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "vipDiscountBps",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "vipExpiryTimestamp",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "vipTier",
               type: "string",
               internalType: "string"
             }
           ],
-          stateMutability: "view"
+          stateMutability: "pure"
         },
         {
-          name: "CollectionFeeOverrideSet",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "makerFeeOverride",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "takerFeeOverride",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "discountBps",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "isVerified",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "FeeConfigUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "oldMakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newMakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "oldTakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newTakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "updatedBy",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "FeeTierUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "oldTierId",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newTierId",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newDiscountBps",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "FeeUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "feeType",
-              type: "string",
-              indexed: true,
-              internalType: "string"
-            },
-            {
-              name: "oldValue",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newValue",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "updatedBy",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "FeesCalculated",
-          type: "event",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "salePrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "finalMakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "finalTakerFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "totalDiscount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Paused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "UserVolumeUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newTotalVolume",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newLast30DaysVolume",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "tradeCount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "VIPStatusUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "isVIP",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "discountBps",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "expiryTimestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "vipTier",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "EnforcedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Fee__InvalidOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Fee__InvalidRoyaltyFee",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
-    },
-    auctionfactory_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "_marketplaceWallet",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_englishAuctionImpl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_dutchAuctionImpl",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "allAuctionIds",
+          name: "createERC1155Collection",
           type: "function",
           inputs: [
             {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "auctionToContract",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "batchCancelAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          outputs: [
-            {
-              name: "cancelledCount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "batchCreateDutchAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenIds",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "amounts",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "priceDropPerHour",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "batchCreateEnglishAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenIds",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "amounts",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "buyNow",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "cancelAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "createDutchAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "priceDropPerHour",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "createEnglishAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "dutchAuction",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "implementation",
-              type: "address",
-              internalType: "contract DutchAuctionImplementation"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "dutchAuctionImplementation",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "englishAuction",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "implementation",
-              type: "address",
-              internalType: "contract EnglishAuctionImplementation"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "englishAuctionImplementation",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllAuctions",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "auction",
+              name: "params",
               type: "tuple",
               components: [
                 {
-                  name: "auctionId",
-                  type: "bytes32",
-                  internalType: "bytes32"
+                  name: "name",
+                  type: "string",
+                  internalType: "string"
                 },
                 {
-                  name: "nftContract",
+                  name: "symbol",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "owner",
                   type: "address",
                   internalType: "address"
                 },
                 {
-                  name: "tokenId",
+                  name: "description",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "mintPrice",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "amount",
+                  name: "royaltyFee",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "seller",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "startPrice",
+                  name: "maxSupply",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "reservePrice",
+                  name: "mintLimitPerWallet",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "startTime",
+                  name: "mintStartTime",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "endTime",
+                  name: "allowlistMintPrice",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "status",
-                  type: "uint8",
-                  internalType: "enum AuctionStatus"
-                },
-                {
-                  name: "auctionType",
-                  type: "uint8",
-                  internalType: "enum AuctionType"
-                },
-                {
-                  name: "highestBidder",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "highestBid",
+                  name: "publicMintPrice",
                   type: "uint256",
                   internalType: "uint256"
                 },
                 {
-                  name: "bidCount",
+                  name: "allowlistStageDuration",
                   type: "uint256",
                   internalType: "uint256"
+                },
+                {
+                  name: "tokenURI",
+                  type: "string",
+                  internalType: "string"
                 }
               ],
-              internalType: "struct IAuction.Auction"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuctionContract",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "contractAddress",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getCurrentPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "currentPrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPendingRefund",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "bidder",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "refundAmount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getTimeToReservePrice",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
+              internalType: "struct CollectionParams"
             }
           ],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getUserAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
               type: "address",
               internalType: "address"
             }
           ],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
+          stateMutability: "nonpayable"
         },
         {
-          name: "isAuctionActive",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "marketplaceValidator",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract IMarketplaceValidator"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "marketplaceWallet",
+          name: "erc1155CollectionImplementation",
           type: "function",
           inputs: [],
           outputs: [
@@ -13928,884 +12112,25 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "owner",
+          name: "getSupportedStandards",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "paused",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "placeBid",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMarketplaceValidator",
-          type: "function",
-          inputs: [
-            {
-              name: "validator",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMarketplaceWallet",
-          type: "function",
-          inputs: [
-            {
-              name: "newWallet",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setPaused",
-          type: "function",
-          inputs: [
-            {
-              name: "paused",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "settleAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "transferNFTFromSeller",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "from",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "to",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "userAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "withdrawBid",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "AuctionCreatedViaFactory",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "auctionContract",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "auctionType",
-              type: "uint8",
-              indexed: false,
-              internalType: "enum AuctionType"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionFactoryPaused",
-          type: "event",
-          inputs: [
-            {
-              name: "isPaused",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "admin",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionImplementationsDeployed",
-          type: "event",
-          inputs: [
-            {
-              name: "englishAuctionImplementation",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "dutchAuctionImplementation",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "marketplaceWallet",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Paused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Auction__AuctionNotFound",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTAlreadyInAuction",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTAlreadyListed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTNotAvailable",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTTransferFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NotAuctionSeller",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__UnsupportedAuctionType",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__ZeroAddress",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "EnforcedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "FailedDeployment",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "InsufficientBalance",
-          type: "error",
-          inputs: [
-            {
-              name: "balance",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "needed",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ]
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0x9a9f2ccfde556a7e9ff0848998aa4a0cfd8863ae"
-    },
-    collectionverifier_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "_accessControl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_feeRecipient",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_verificationFee",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "accessControl",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract MarketplaceAccessControl"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "batchVerifyCollections",
-          type: "function",
-          inputs: [
-            {
-              name: "collections",
-              type: "address[]",
-              internalType: "address[]"
-            },
-            {
-              name: "verificationTiers",
               type: "string[]",
               internalType: "string[]"
             }
           ],
-          outputs: [],
-          stateMutability: "nonpayable"
+          stateMutability: "pure"
         },
         {
-          name: "canCollectionBeListed",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "canList",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "collectionMetadata",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "name",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "description",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "imageUrl",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "websiteUrl",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "twitterUrl",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "discordUrl",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "creator",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "createdAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "collectionVerifications",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "isVerified",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum CollectionVerifier.VerificationStatus"
-            },
-            {
-              name: "verifiedBy",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "verifiedAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "expiryTimestamp",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "verificationTier",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "verificationHash",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "hasSpecialBenefits",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "emergencyPause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "feeRecipient",
+          name: "getTotalCollections",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllVerifiedCollections",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "collections",
-              type: "address[]",
-              internalType: "address[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getCollectionMetadata",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "metadata",
-              type: "tuple",
-              components: [
-                {
-                  name: "name",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "description",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "imageUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "websiteUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "twitterUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "discordUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "creator",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "createdAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tags",
-                  type: "string[]",
-                  internalType: "string[]"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct CollectionVerifier.CollectionMetadata"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getCollectionVerification",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "verification",
-              type: "tuple",
-              components: [
-                {
-                  name: "isVerified",
-                  type: "bool",
-                  internalType: "bool"
-                },
-                {
-                  name: "status",
-                  type: "uint8",
-                  internalType: "enum CollectionVerifier.VerificationStatus"
-                },
-                {
-                  name: "verifiedBy",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "verifiedAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "expiryTimestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "verificationTier",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "verificationHash",
-                  type: "bytes32",
-                  internalType: "bytes32"
-                },
-                {
-                  name: "hasSpecialBenefits",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct CollectionVerifier.CollectionVerification"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPendingRequests",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "requests",
-              type: "address[]",
-              internalType: "address[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getVerificationRequest",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "request",
-              type: "tuple",
-              components: [
-                {
-                  name: "collection",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "requester",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "requestedAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "status",
-                  type: "uint8",
-                  internalType: "enum CollectionVerifier.VerificationStatus"
-                },
-                {
-                  name: "submissionData",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "feePaid",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "reviewer",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "reviewNotes",
-                  type: "string",
-                  internalType: "string"
-                }
-              ],
-              internalType: "struct CollectionVerifier.VerificationRequest"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getVerificationStats",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "totalVerified",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "totalRequests",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "pendingCount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "verifiedOnlyEnabled",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getVerifiedCollectionsPaginated",
-          type: "function",
-          inputs: [
-            {
-              name: "offset",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "limit",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "collections",
-              type: "address[]",
-              internalType: "address[]"
-            },
-            {
-              name: "total",
               type: "uint256",
               internalType: "uint256"
             }
@@ -14813,39 +12138,7 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "isCollectionVerified",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "paused",
+          name: "isActive",
           type: "function",
           inputs: [],
           outputs: [
@@ -14853,3137 +12146,20 @@ export default createConfig({
               name: "",
               type: "bool",
               internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "pendingRequestIndex",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "pendingRequests",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "processVerificationRequest",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "approve",
-              type: "bool",
-              internalType: "bool"
-            },
-            {
-              name: "verificationTier",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "reviewNotes",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "expiryTimestamp",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "requestVerification",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "metadata",
-              type: "tuple",
-              components: [
-                {
-                  name: "name",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "description",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "imageUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "websiteUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "twitterUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "discordUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "creator",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "createdAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tags",
-                  type: "string[]",
-                  internalType: "string[]"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct CollectionVerifier.CollectionMetadata"
-            },
-            {
-              name: "submissionData",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "revokeVerification",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "reason",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "toggleVerifiedOnlyMode",
-          type: "function",
-          inputs: [
-            {
-              name: "enabled",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "totalRequestsProcessed",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "totalVerifiedCollections",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "unpause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateCollectionMetadata",
-          type: "function",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "metadata",
-              type: "tuple",
-              components: [
-                {
-                  name: "name",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "description",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "imageUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "websiteUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "twitterUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "discordUrl",
-                  type: "string",
-                  internalType: "string"
-                },
-                {
-                  name: "creator",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "createdAt",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tags",
-                  type: "string[]",
-                  internalType: "string[]"
-                },
-                {
-                  name: "isActive",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct CollectionVerifier.CollectionMetadata"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateFeeRecipient",
-          type: "function",
-          inputs: [
-            {
-              name: "newFeeRecipient",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateVerificationFee",
-          type: "function",
-          inputs: [
-            {
-              name: "newFee",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "verificationFee",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "verificationRequests",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "requester",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "requestedAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum CollectionVerifier.VerificationStatus"
-            },
-            {
-              name: "submissionData",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "feePaid",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reviewer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "reviewNotes",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "verifiedCollectionIndex",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "verifiedCollections",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "verifiedOnlyMode",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "CollectionMetadataUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "updatedBy",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "CollectionVerificationRevoked",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "revokedBy",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "reason",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "CollectionVerified",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "verifiedBy",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "verificationTier",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Paused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "VerificationFeeUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "oldFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "updatedBy",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "VerificationRequestProcessed",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "reviewer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              indexed: false,
-              internalType: "enum CollectionVerifier.VerificationStatus"
-            },
-            {
-              name: "reviewNotes",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "VerificationRequested",
-          type: "event",
-          inputs: [
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "requester",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "feePaid",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "VerifiedOnlyModeToggled",
-          type: "event",
-          inputs: [
-            {
-              name: "enabled",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "toggledBy",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Collection__AlreadyVerified",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__FeeTransferFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__InsufficientFee",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__InvalidArrayLength",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__InvalidNFTContract",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__InvalidRequestStatus",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__NotVerified",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__RequestAlreadyPending",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__UnauthorizedAccess",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Collection__ZeroAddress",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "EnforcedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
-    },
-    dutchauctionimplementation_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "BPS_DENOMINATOR",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_MAX_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_MIN_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MAX_PRICE_DROP",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MIN_PRICE_DROP",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "activeAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "allAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "auctionBids",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "bidder",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "refunded",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "auctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "startTime",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "endTime",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum AuctionStatus"
-            },
-            {
-              name: "auctionType",
-              type: "uint8",
-              internalType: "enum AuctionType"
-            },
-            {
-              name: "highestBidder",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "highestBid",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "bidCount",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bidderToIndex",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "buyNow",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "buyNowFor",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "buyer",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "cancelAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "cancelAuctionFor",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "contractAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "createAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "auctionType",
-              type: "uint8",
-              internalType: "enum AuctionType"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "createDutchAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "duration",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "_priceDropPerHour",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "emergencyResetNFTStatus",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "factoryContract",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveAuctions",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllBids",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "bids",
-              type: "tuple[]",
-              components: [
-                {
-                  name: "bidder",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "amount",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "timestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "refunded",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct IAuction.Bid[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "auction",
-              type: "tuple",
-              components: [
-                {
-                  name: "auctionId",
-                  type: "bytes32",
-                  internalType: "bytes32"
-                },
-                {
-                  name: "nftContract",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "tokenId",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "amount",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "seller",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "startPrice",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "reservePrice",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "startTime",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "endTime",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "status",
-                  type: "uint8",
-                  internalType: "enum AuctionStatus"
-                },
-                {
-                  name: "auctionType",
-                  type: "uint8",
-                  internalType: "enum AuctionType"
-                },
-                {
-                  name: "highestBidder",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "highestBid",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "bidCount",
-                  type: "uint256",
-                  internalType: "uint256"
-                }
-              ],
-              internalType: "struct IAuction.Auction"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuctionsByContract",
-          type: "function",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuctionsBySeller",
-          type: "function",
-          inputs: [
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "auctionIds",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBid",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "bidder",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "bid",
-              type: "tuple",
-              components: [
-                {
-                  name: "bidder",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "amount",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "timestamp",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "refunded",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct IAuction.Bid"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getCurrentPrice",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "currentPrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPendingRefund",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPriceAtTime",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "price",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getPriceDropPerHour",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "dropPerHour",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getTimeToReservePrice",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "timeToReserve",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "initialize",
-          type: "function",
-          inputs: [
-            {
-              name: "_marketplaceWallet",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "isAuctionActive",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "isActive",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "marketplaceFee",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "marketplaceValidator",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract IMarketplaceValidator"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "marketplaceWallet",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "maxAuctionDuration",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "minAuctionDuration",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "minBidIncrement",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "paused",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "placeBid",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "placeBidFor",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "priceDropPerHour",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "sellerAuctions",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "setMarketplaceFee",
-          type: "function",
-          inputs: [
-            {
-              name: "newFee",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMarketplaceValidator",
-          type: "function",
-          inputs: [
-            {
-              name: "newValidator",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMarketplaceWallet",
-          type: "function",
-          inputs: [
-            {
-              name: "newWallet",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMaxAuctionDuration",
-          type: "function",
-          inputs: [
-            {
-              name: "newMaxDuration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMinAuctionDuration",
-          type: "function",
-          inputs: [
-            {
-              name: "newMinDuration",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setMinBidIncrement",
-          type: "function",
-          inputs: [
-            {
-              name: "newIncrement",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setPaused",
-          type: "function",
-          inputs: [
-            {
-              name: "paused",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "settleAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "withdrawBid",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "withdrawBidFor",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "AuctionCancelled",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "reason",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionCancelledWithRefunds",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "bidCount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionCreated",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "nftContract",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "startPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "reservePrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "startTime",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "endTime",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "auctionType",
-              type: "uint8",
-              indexed: false,
-              internalType: "uint8"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionFactoryPaused",
-          type: "event",
-          inputs: [
-            {
-              name: "isPaused",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "admin",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionFeesDistributed",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "marketplaceFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "royaltyFee",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "royaltyReceiver",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionParameterUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "parameter",
-              type: "string",
-              indexed: false,
-              internalType: "string"
-            },
-            {
-              name: "oldValue",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newValue",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionSettled",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "winner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "finalPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "DebugNFTValidation",
-          type: "event",
-          inputs: [
-            {
-              name: "nftContract",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: true,
-              internalType: "uint256"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "isAvailable",
-              type: "bool",
-              indexed: false,
-              internalType: "bool"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              indexed: false,
-              internalType: "uint8"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "DutchAuctionPurchase",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "buyer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "purchasePrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "currentPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Paused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "Auction__AuctionNotActive",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__AuctionNotFound",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__AuctionStillActive",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__CannotCancelWithBids",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__InsufficientPayment",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__InvalidAuctionDuration",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__InvalidAuctionParameters",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__InvalidReservePrice",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__InvalidStartPrice",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTAlreadyInAuction",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTAlreadyListed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTNotApproved",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTNotAvailable",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NFTTransferFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NotAuctionSeller",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NotAuthorized",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__NotNFTOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__PaymentDistributionFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__RefundFailed",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__SellerCannotBid",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__UnsupportedAuctionType",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "Auction__ZeroAddress",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "EnforcedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
-          type: "error",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0x959922be3caee4b8cd9a407cc3ac1c251c2007b1"
-    },
-    bundlemanager_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "_accessControl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_feeManager",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "MAX_BUNDLE_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MAX_NFTS_PER_BUNDLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "MIN_BUNDLE_DURATION",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "accessControl",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract MarketplaceAccessControl"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "allBundles",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bundleCounter",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bundleItems",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "collection",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "tokenType",
-              type: "uint8",
-              internalType: "enum BundleManager.TokenType"
-            },
-            {
-              name: "isIncluded",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bundleMetadata",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "buyer",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "description",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "imageUrl",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bundleTiming",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "startTime",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "endTime",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "createdAt",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "soldAt",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "bundles",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "totalPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "discountPercentage",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "status",
-              type: "uint8",
-              internalType: "enum BundleManager.BundleStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "cancelBundle",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "reason",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "createBundle",
-          type: "function",
-          inputs: [
-            {
-              name: "items",
-              type: "tuple[]",
-              components: [
-                {
-                  name: "collection",
-                  type: "address",
-                  internalType: "address"
-                },
-                {
-                  name: "tokenId",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "amount",
-                  type: "uint256",
-                  internalType: "uint256"
-                },
-                {
-                  name: "tokenType",
-                  type: "uint8",
-                  internalType: "enum BundleManager.TokenType"
-                },
-                {
-                  name: "isIncluded",
-                  type: "bool",
-                  internalType: "bool"
-                }
-              ],
-              internalType: "struct BundleManager.BundleItem[]"
-            },
-            {
-              name: "totalPrice",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "discountPercentage",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "paymentToken",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "endTime",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "description",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "imageUrl",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "feeManager",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract AdvancedFeeManager"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getActiveBundles",
-          type: "function",
-          inputs: [
-            {
-              name: "offset",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "limit",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundleBasicInfo",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint8",
-              internalType: "enum BundleManager.BundleStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundleMetadata",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            },
-            {
-              name: "",
-              type: "string",
-              internalType: "string"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundlePrice",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundleSeller",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundleStatus",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint8",
-              internalType: "enum BundleManager.BundleStatus"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getBundleTimingInfo",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getUserBundles",
-          type: "function",
-          inputs: [
-            {
-              name: "user",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32[]",
-              internalType: "bytes32[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "onERC1155BatchReceived",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "",
-              type: "uint256[]",
-              internalType: "uint256[]"
-            },
-            {
-              name: "",
-              type: "bytes",
-              internalType: "bytes"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes4",
-              internalType: "bytes4"
             }
           ],
           stateMutability: "pure"
         },
         {
-          name: "onERC1155Received",
+          name: "isValidCollection",
           type: "function",
           inputs: [
             {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            },
-            {
-              name: "",
-              type: "bytes",
-              internalType: "bytes"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
-          stateMutability: "pure"
-        },
-        {
-          name: "owner",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
+              name: "collection",
               type: "address",
               internalType: "address"
             }
           ],
-          stateMutability: "view"
-        },
-        {
-          name: "pause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "paused",
-          type: "function",
-          inputs: [],
           outputs: [
             {
               name: "",
@@ -17992,26 +12168,6 @@ export default createConfig({
             }
           ],
           stateMutability: "view"
-        },
-        {
-          name: "purchaseBundle",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [],
-          stateMutability: "payable"
-        },
-        {
-          name: "renounceOwnership",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
         },
         {
           name: "supportsInterface",
@@ -18033,266 +12189,30 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "totalBundlesCreated",
+          name: "version",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "totalBundlesSold",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "transferOwnership",
-          type: "function",
-          inputs: [
-            {
-              name: "newOwner",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "unpause",
-          type: "function",
-          inputs: [],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "updateBundlePrice",
-          type: "function",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "newPrice",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "userBundles",
-          type: "function",
-          inputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "uint256",
-              internalType: "uint256"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "BundleCancelled",
-          type: "event",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "reason",
               type: "string",
-              indexed: false,
               internalType: "string"
             }
           ],
-          anonymous: false
+          stateMutability: "pure"
         },
         {
-          name: "BundleCreated",
+          name: "ERC1155CollectionCreated",
           type: "event",
           inputs: [
             {
-              name: "bundleId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
+              name: "collectionAddress",
               type: "address",
               indexed: true,
               internalType: "address"
             },
             {
-              name: "itemCount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "totalPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "discountPercentage",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "BundleItemRemoved",
-          type: "event",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "collection",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "tokenId",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "BundleSold",
-          type: "event",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "buyer",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "totalPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "itemCount",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "BundleUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "bundleId",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "seller",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "oldPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "newPrice",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            },
-            {
-              name: "timestamp",
-              type: "uint256",
-              indexed: false,
-              internalType: "uint256"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "OwnershipTransferred",
-          type: "event",
-          inputs: [
-            {
-              name: "previousOwner",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "newOwner",
+              name: "creator",
               type: "address",
               indexed: true,
               internalType: "address"
@@ -18301,121 +12221,41 @@ export default createConfig({
           anonymous: false
         },
         {
-          name: "Paused",
+          name: "ImplementationDeployed",
           type: "event",
           inputs: [
             {
-              name: "account",
+              name: "implementation",
               type: "address",
-              indexed: false,
+              indexed: true,
               internalType: "address"
             }
           ],
           anonymous: false
         },
         {
-          name: "Unpaused",
-          type: "event",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "EnforcedPause",
+          name: "FailedDeployment",
           type: "error",
           inputs: []
         },
         {
-          name: "ExpectedPause",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__AmountMustBeGreaterThanZero",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__DurationMustBeGreaterThanZero",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InsufficientBalance",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__InsufficientPayment",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__ListingExpired",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NFTNotActive",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__NotTheOwner",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "NFTExchange__PriceMustBeGreaterThanZero",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "OwnableInvalidOwner",
+          name: "InsufficientBalance",
           type: "error",
           inputs: [
             {
-              name: "owner",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-          inputs: [
+              name: "balance",
+              type: "uint256",
+              internalType: "uint256"
+            },
             {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ]
-        },
-        {
-          name: "ReentrancyGuardReentrantCall",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "SafeERC20FailedOperation",
-          type: "error",
-          inputs: [
-            {
-              name: "token",
-              type: "address",
-              internalType: "address"
+              name: "needed",
+              type: "uint256",
+              internalType: "uint256"
             }
           ]
         }
       ],
-      address: "0x3aa5ebb10dc797cac828524e59a333d0a371443c"
+      address: "0x9a676e781a523b5d0c0e43731313a708cb607508"
     },
     collectionregistry_anvil: {
       chain: "anvil",
@@ -21116,478 +14956,29 @@ export default createConfig({
       ],
       address: "0xc6e7df5e7b4f2a278906862b61205850344d4e7d"
     },
-    auctionregistry_anvil: {
+    collectionverifier_anvil: {
       chain: "anvil",
       abi: [
         {
           type: "constructor",
           inputs: [
             {
-              name: "admin",
+              name: "_accessControl",
               type: "address",
               internalType: "address"
+            },
+            {
+              name: "_feeRecipient",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_verificationFee",
+              type: "uint256",
+              internalType: "uint256"
             }
           ],
           stateMutability: "nonpayable"
-        },
-        {
-          name: "ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllAuctions",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "types",
-              type: "uint8[]",
-              internalType: "enum IAuctionRegistry.AuctionType[]"
-            },
-            {
-              name: "contracts",
-              type: "address[]",
-              internalType: "address[]"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuctionContract",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionType",
-              type: "uint8",
-              internalType: "enum IAuctionRegistry.AuctionType"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAuctionFactory",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoleAdmin",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "grantRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "hasRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "isRegisteredAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionContract",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "registerAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionType",
-              type: "uint8",
-              internalType: "enum IAuctionRegistry.AuctionType"
-            },
-            {
-              name: "auctionContract",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "renounceRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "callerConfirmation",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "revokeRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "supportsInterface",
-          type: "function",
-          inputs: [
-            {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bool",
-              internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "updateAuctionFactory",
-          type: "function",
-          inputs: [
-            {
-              name: "newFactory",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "AuctionFactoryUpdated",
-          type: "event",
-          inputs: [
-            {
-              name: "oldFactory",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            },
-            {
-              name: "newFactory",
-              type: "address",
-              indexed: false,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AuctionRegistered",
-          type: "event",
-          inputs: [
-            {
-              name: "auctionType",
-              type: "uint8",
-              indexed: true,
-              internalType: "enum IAuctionRegistry.AuctionType"
-            },
-            {
-              name: "auctionContract",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleAdminChanged",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "previousAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "newAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleGranted",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "RoleRevoked",
-          type: "event",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
-              internalType: "address"
-            }
-          ],
-          anonymous: false
-        },
-        {
-          name: "AccessControlBadConfirmation",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AccessControlUnauthorizedAccount",
-          type: "error",
-          inputs: [
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "neededRole",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ]
-        },
-        {
-          name: "AuctionRegistry__AuctionAlreadyRegistered",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AuctionRegistry__AuctionNotRegistered",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AuctionRegistry__FactoryNotSet",
-          type: "error",
-          inputs: []
-        },
-        {
-          name: "AuctionRegistry__ZeroAddress",
-          type: "error",
-          inputs: []
-        }
-      ],
-      address: "0x4a679253410272dd5232b3ff7cf5dbb88f295319"
-    },
-    adminhub_anvil: {
-      chain: "anvil",
-      abi: [
-        {
-          type: "constructor",
-          inputs: [
-            {
-              name: "admin",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_exchangeRegistry",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_collectionRegistry",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_feeRegistry",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_auctionRegistry",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "DEFAULT_ADMIN_ROLE",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
         },
         {
           name: "accessControl",
@@ -21597,59 +14988,157 @@ export default createConfig({
             {
               name: "",
               type: "address",
-              internalType: "address"
+              internalType: "contract MarketplaceAccessControl"
             }
           ],
           stateMutability: "view"
         },
         {
-          name: "auctionRegistry",
+          name: "batchVerifyCollections",
           type: "function",
-          inputs: [],
-          outputs: [
+          inputs: [
             {
-              name: "",
-              type: "address",
-              internalType: "contract IAuctionRegistry"
+              name: "collections",
+              type: "address[]",
+              internalType: "address[]"
+            },
+            {
+              name: "verificationTiers",
+              type: "string[]",
+              internalType: "string[]"
             }
           ],
-          stateMutability: "view"
+          outputs: [],
+          stateMutability: "nonpayable"
         },
         {
-          name: "collectionRegistry",
+          name: "canCollectionBeListed",
           type: "function",
-          inputs: [],
-          outputs: [
+          inputs: [
             {
-              name: "",
-              type: "address",
-              internalType: "contract ICollectionRegistry"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "configManager",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
+              name: "collection",
               type: "address",
               internalType: "address"
             }
           ],
+          outputs: [
+            {
+              name: "canList",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
           stateMutability: "view"
         },
         {
-          name: "emergencyManager",
+          name: "collectionMetadata",
           type: "function",
-          inputs: [],
-          outputs: [
+          inputs: [
             {
               name: "",
               type: "address",
               internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "name",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "description",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "imageUrl",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "websiteUrl",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "twitterUrl",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "discordUrl",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "creator",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "createdAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "collectionVerifications",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "isVerified",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum CollectionVerifier.VerificationStatus"
+            },
+            {
+              name: "verifiedBy",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "verifiedAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "expiryTimestamp",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "verificationTier",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "verificationHash",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "hasSpecialBenefits",
+              type: "bool",
+              internalType: "bool"
             }
           ],
           stateMutability: "view"
@@ -21662,263 +15151,761 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "exchangeRegistry",
+          name: "feeRecipient",
           type: "function",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "address",
-              internalType: "contract IExchangeRegistry"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "feeRegistry",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "contract IFeeRegistry"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getAllRegistries",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "exchange",
               type: "address",
               internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllVerifiedCollections",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "collections",
+              type: "address[]",
+              internalType: "address[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getCollectionMetadata",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "metadata",
+              type: "tuple",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "imageUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "websiteUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "twitterUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "discordUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "creator",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "createdAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tags",
+                  type: "string[]",
+                  internalType: "string[]"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct CollectionVerifier.CollectionMetadata"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getCollectionVerification",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "verification",
+              type: "tuple",
+              components: [
+                {
+                  name: "isVerified",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "status",
+                  type: "uint8",
+                  internalType: "enum CollectionVerifier.VerificationStatus"
+                },
+                {
+                  name: "verifiedBy",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "verifiedAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "expiryTimestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "verificationTier",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "verificationHash",
+                  type: "bytes32",
+                  internalType: "bytes32"
+                },
+                {
+                  name: "hasSpecialBenefits",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct CollectionVerifier.CollectionVerification"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPendingRequests",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "requests",
+              type: "address[]",
+              internalType: "address[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getVerificationRequest",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "request",
+              type: "tuple",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "requester",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "requestedAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "status",
+                  type: "uint8",
+                  internalType: "enum CollectionVerifier.VerificationStatus"
+                },
+                {
+                  name: "submissionData",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "feePaid",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "reviewer",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "reviewNotes",
+                  type: "string",
+                  internalType: "string"
+                }
+              ],
+              internalType: "struct CollectionVerifier.VerificationRequest"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getVerificationStats",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "totalVerified",
+              type: "uint256",
+              internalType: "uint256"
             },
+            {
+              name: "totalRequests",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "pendingCount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "verifiedOnlyEnabled",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getVerifiedCollectionsPaginated",
+          type: "function",
+          inputs: [
+            {
+              name: "offset",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "limit",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "collections",
+              type: "address[]",
+              internalType: "address[]"
+            },
+            {
+              name: "total",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isCollectionVerified",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "pendingRequestIndex",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "pendingRequests",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "processVerificationRequest",
+          type: "function",
+          inputs: [
             {
               name: "collection",
               type: "address",
               internalType: "address"
             },
             {
-              name: "fee",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "auction",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getManagementContracts",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "getRoleAdmin",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "bytes32",
-              internalType: "bytes32"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "grantRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "hasRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [
-            {
-              name: "",
+              name: "approve",
               type: "bool",
               internalType: "bool"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "historyTracker",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "listingValidator",
-          type: "function",
-          inputs: [],
-          outputs: [
-            {
-              name: "",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          stateMutability: "view"
-        },
-        {
-          name: "registerAuction",
-          type: "function",
-          inputs: [
-            {
-              name: "auctionType",
-              type: "uint8",
-              internalType: "enum IAuctionRegistry.AuctionType"
             },
             {
-              name: "auction",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "registerCollectionFactory",
-          type: "function",
-          inputs: [
-            {
-              name: "tokenType",
+              name: "verificationTier",
               type: "string",
               internalType: "string"
             },
             {
-              name: "factory",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "registerExchange",
-          type: "function",
-          inputs: [
-            {
-              name: "standard",
-              type: "uint8",
-              internalType: "enum IExchangeRegistry.TokenStandard"
+              name: "reviewNotes",
+              type: "string",
+              internalType: "string"
             },
             {
-              name: "exchange",
-              type: "address",
-              internalType: "address"
+              name: "expiryTimestamp",
+              type: "uint256",
+              internalType: "uint256"
             }
           ],
           outputs: [],
           stateMutability: "nonpayable"
         },
         {
-          name: "renounceRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "callerConfirmation",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "revokeRole",
-          type: "function",
-          inputs: [
-            {
-              name: "role",
-              type: "bytes32",
-              internalType: "bytes32"
-            },
-            {
-              name: "account",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "roleManager",
+          name: "renounceOwnership",
           type: "function",
           inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "requestVerification",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "metadata",
+              type: "tuple",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "imageUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "websiteUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "twitterUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "discordUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "creator",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "createdAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tags",
+                  type: "string[]",
+                  internalType: "string[]"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct CollectionVerifier.CollectionMetadata"
+            },
+            {
+              name: "submissionData",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "revokeVerification",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "reason",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "toggleVerifiedOnlyMode",
+          type: "function",
+          inputs: [
+            {
+              name: "enabled",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "totalRequestsProcessed",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "totalVerifiedCollections",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "unpause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateCollectionMetadata",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "metadata",
+              type: "tuple",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "imageUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "websiteUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "twitterUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "discordUrl",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "creator",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "createdAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tags",
+                  type: "string[]",
+                  internalType: "string[]"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct CollectionVerifier.CollectionMetadata"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateFeeRecipient",
+          type: "function",
+          inputs: [
+            {
+              name: "newFeeRecipient",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateVerificationFee",
+          type: "function",
+          inputs: [
+            {
+              name: "newFee",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "verificationFee",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "verificationRequests",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "requester",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "requestedAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum CollectionVerifier.VerificationStatus"
+            },
+            {
+              name: "submissionData",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "feePaid",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reviewer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "reviewNotes",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "verifiedCollectionIndex",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "verifiedCollections",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
           outputs: [
             {
               name: "",
@@ -21929,66 +15916,9 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "setAdditionalContracts",
+          name: "verifiedOnlyMode",
           type: "function",
-          inputs: [
-            {
-              name: "_listingValidator",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_emergencyManager",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_accessControl",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_historyTracker",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "setManagementContracts",
-          type: "function",
-          inputs: [
-            {
-              name: "_roleManager",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_upgradeManager",
-              type: "address",
-              internalType: "address"
-            },
-            {
-              name: "_configManager",
-              type: "address",
-              internalType: "address"
-            }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        },
-        {
-          name: "supportsInterface",
-          type: "function",
-          inputs: [
-            {
-              name: "interfaceId",
-              type: "bytes4",
-              internalType: "bytes4"
-            }
-          ],
+          inputs: [],
           outputs: [
             {
               name: "",
@@ -21999,11 +15929,652 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "updateAuctionFactory",
+          name: "CollectionMetadataUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "updatedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "CollectionVerificationRevoked",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "revokedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "reason",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "CollectionVerified",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "verifiedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "verificationTier",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Unpaused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "VerificationFeeUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "oldFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "updatedBy",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "VerificationRequestProcessed",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "reviewer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CollectionVerifier.VerificationStatus"
+            },
+            {
+              name: "reviewNotes",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "VerificationRequested",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "requester",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "feePaid",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "VerifiedOnlyModeToggled",
+          type: "event",
+          inputs: [
+            {
+              name: "enabled",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "toggledBy",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Collection__AlreadyVerified",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__FeeTransferFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__InsufficientFee",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__InvalidArrayLength",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__InvalidNFTContract",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__InvalidRequestStatus",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__NotVerified",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__RequestAlreadyPending",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__UnauthorizedAccess",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Collection__ZeroAddress",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
+    },
+    dutchauctionimplementation_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "BPS_DENOMINATOR",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "DEFAULT_MAX_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "DEFAULT_MIN_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "MAX_PRICE_DROP",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "MIN_PRICE_DROP",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "activeAuctions",
           type: "function",
           inputs: [
             {
-              name: "factory",
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "allAuctions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "auctionBids",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "bidder",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "refunded",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "auctions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "startTime",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "endTime",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum AuctionStatus"
+            },
+            {
+              name: "auctionType",
+              type: "uint8",
+              internalType: "enum AuctionType"
+            },
+            {
+              name: "highestBidder",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "highestBid",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "bidCount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bidderToIndex",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "buyNow",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "buyNowFor",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "buyer",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "cancelAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "cancelAuctionFor",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
               type: "address",
               internalType: "address"
             }
@@ -22012,7 +16583,162 @@ export default createConfig({
           stateMutability: "nonpayable"
         },
         {
-          name: "upgradeManager",
+          name: "contractAuctions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "createAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "auctionType",
+              type: "uint8",
+              internalType: "enum AuctionType"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "createDutchAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "_priceDropPerHour",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "emergencyResetNFTStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "factoryContract",
           type: "function",
           inputs: [],
           outputs: [
@@ -22025,134 +16751,1176 @@ export default createConfig({
           stateMutability: "view"
         },
         {
-          name: "ContractsConfigured",
+          name: "getActiveAuctions",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllBids",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "bids",
+              type: "tuple[]",
+              components: [
+                {
+                  name: "bidder",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "timestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "refunded",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct IAuction.Bid[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "auction",
+              type: "tuple",
+              components: [
+                {
+                  name: "auctionId",
+                  type: "bytes32",
+                  internalType: "bytes32"
+                },
+                {
+                  name: "nftContract",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "seller",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "startPrice",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "reservePrice",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "startTime",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "endTime",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "status",
+                  type: "uint8",
+                  internalType: "enum AuctionStatus"
+                },
+                {
+                  name: "auctionType",
+                  type: "uint8",
+                  internalType: "enum AuctionType"
+                },
+                {
+                  name: "highestBidder",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "highestBid",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "bidCount",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct IAuction.Auction"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuctionsByContract",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuctionsBySeller",
+          type: "function",
+          inputs: [
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBid",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "bidder",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "bid",
+              type: "tuple",
+              components: [
+                {
+                  name: "bidder",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "timestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "refunded",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct IAuction.Bid"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getCurrentPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "currentPrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPendingRefund",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPriceAtTime",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "price",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPriceDropPerHour",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "dropPerHour",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getTimeToReservePrice",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "timeToReserve",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "initialize",
+          type: "function",
+          inputs: [
+            {
+              name: "_marketplaceWallet",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "isAuctionActive",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "marketplaceFee",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "marketplaceValidator",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IMarketplaceValidator"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "marketplaceWallet",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "maxAuctionDuration",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "minAuctionDuration",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "minBidIncrement",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "placeBid",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "placeBidFor",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "priceDropPerHour",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "sellerAuctions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "setMarketplaceFee",
+          type: "function",
+          inputs: [
+            {
+              name: "newFee",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMarketplaceValidator",
+          type: "function",
+          inputs: [
+            {
+              name: "newValidator",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMarketplaceWallet",
+          type: "function",
+          inputs: [
+            {
+              name: "newWallet",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMaxAuctionDuration",
+          type: "function",
+          inputs: [
+            {
+              name: "newMaxDuration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMinAuctionDuration",
+          type: "function",
+          inputs: [
+            {
+              name: "newMinDuration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMinBidIncrement",
+          type: "function",
+          inputs: [
+            {
+              name: "newIncrement",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setPaused",
+          type: "function",
+          inputs: [
+            {
+              name: "paused",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "settleAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "withdrawBid",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "withdrawBidFor",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "AuctionCancelled",
           type: "event",
           inputs: [
             {
-              name: "listingValidator",
+              name: "auctionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "reason",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionCreated",
+          type: "event",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "nftContract",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
               type: "address",
               indexed: false,
               internalType: "address"
             },
             {
-              name: "emergencyManager",
-              type: "address",
+              name: "startPrice",
+              type: "uint256",
               indexed: false,
-              internalType: "address"
+              internalType: "uint256"
             },
             {
-              name: "accessControl",
-              type: "address",
+              name: "reservePrice",
+              type: "uint256",
               indexed: false,
-              internalType: "address"
+              internalType: "uint256"
             },
             {
-              name: "historyTracker",
-              type: "address",
+              name: "startTime",
+              type: "uint256",
               indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "endTime",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "auctionType",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionFactoryPaused",
+          type: "event",
+          inputs: [
+            {
+              name: "isPaused",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "admin",
+              type: "address",
+              indexed: true,
               internalType: "address"
             }
           ],
           anonymous: false
         },
         {
-          name: "RoleAdminChanged",
+          name: "AuctionFeesDistributed",
           type: "event",
           inputs: [
             {
-              name: "role",
+              name: "auctionId",
               type: "bytes32",
               indexed: true,
               internalType: "bytes32"
             },
             {
-              name: "previousAdminRole",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
+              name: "seller",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
             },
             {
-              name: "newAdminRole",
-              type: "bytes32",
+              name: "marketplaceFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "royaltyFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "royaltyReceiver",
+              type: "address",
               indexed: true,
-              internalType: "bytes32"
+              internalType: "address"
             }
           ],
           anonymous: false
         },
         {
-          name: "RoleGranted",
+          name: "AuctionParameterUpdated",
           type: "event",
           inputs: [
             {
-              name: "role",
+              name: "auctionId",
               type: "bytes32",
               indexed: true,
               internalType: "bytes32"
             },
+            {
+              name: "parameter",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            },
+            {
+              name: "oldValue",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newValue",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionSettled",
+          type: "event",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "winner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "finalPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "DebugNFTValidation",
+          type: "event",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "isAvailable",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "DutchAuctionPurchase",
+          type: "event",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "buyer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "purchasePrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "currentPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
             {
               name: "account",
               type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
+              indexed: false,
               internalType: "address"
             }
           ],
           anonymous: false
         },
         {
-          name: "RoleRevoked",
+          name: "Unpaused",
           type: "event",
           inputs: [
             {
-              name: "role",
-              type: "bytes32",
-              indexed: true,
-              internalType: "bytes32"
-            },
-            {
               name: "account",
               type: "address",
-              indexed: true,
-              internalType: "address"
-            },
-            {
-              name: "sender",
-              type: "address",
-              indexed: true,
+              indexed: false,
               internalType: "address"
             }
           ],
           anonymous: false
         },
         {
-          name: "AccessControlBadConfirmation",
+          name: "Auction__AuctionNotActive",
           type: "error",
           inputs: []
         },
         {
-          name: "AccessControlUnauthorizedAccount",
+          name: "Auction__AuctionNotFound",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__AuctionStillActive",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__CannotCancelWithBids",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__InsufficientPayment",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__InvalidAuctionDuration",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__InvalidAuctionParameters",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__InvalidReservePrice",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__InvalidStartPrice",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTAlreadyInAuction",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTAlreadyListed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTNotApproved",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTNotAvailable",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTTransferFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NotAuctionSeller",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NotAuthorized",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NotNFTOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__PaymentDistributionFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__RefundFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__SellerCannotBid",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__UnsupportedAuctionType",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__ZeroAddress",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
           type: "error",
           inputs: [
             {
               name: "account",
               type: "address",
               internalType: "address"
-            },
-            {
-              name: "neededRole",
-              type: "bytes32",
-              internalType: "bytes32"
             }
           ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
         }
       ],
-      address: "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
+      address: "0x959922be3caee4b8cd9a407cc3ac1c251c2007b1"
     },
     advancedroyaltymanager_anvil: {
       chain: "anvil",
@@ -22794,6 +18562,4459 @@ export default createConfig({
         }
       ],
       address: "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6"
+    },
+    advancedfeemanager_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_accessControl",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_feeRecipient",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "EMERGENCY_FEE_CAP",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "accessControl",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract MarketplaceAccessControl"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "baseFeeConfig",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "makerFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "takerFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "listingFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "auctionFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "bundleFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "batchUpdateUserVolumes",
+          type: "function",
+          inputs: [
+            {
+              name: "users",
+              type: "address[]",
+              internalType: "address[]"
+            },
+            {
+              name: "volumes",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "calculateFees",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "salePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "isMaker",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [
+            {
+              name: "finalFee",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "appliedDiscount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "checkTierUpgradeEligibility",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "canUpgrade",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "nextTierId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "volumeNeeded",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "collectionFeeOverrides",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "makerFeeOverride",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "takerFeeOverride",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "discountBps",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "hasOverride",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "isVerified",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "setAt",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "emergencyPause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "feeRecipient",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "feeTierConfigs",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "volumeThreshold",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "discountBps",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "tierName",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllFeeTierConfigs",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "tierConfigs",
+              type: "tuple[]",
+              components: [
+                {
+                  name: "volumeThreshold",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tierName",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct FeeTierConfig[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBaseFeeConfig",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "config",
+              type: "tuple",
+              components: [
+                {
+                  name: "makerFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "takerFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "listingFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "auctionFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "bundleFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct FeeConfig"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getCollectionFeeOverride",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "feeOverride",
+              type: "tuple",
+              components: [
+                {
+                  name: "makerFeeOverride",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "takerFeeOverride",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "hasOverride",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "isVerified",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "setAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct CollectionFeeOverride"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getEffectiveFeeRate",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "isMaker",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [
+            {
+              name: "effectiveRate",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getFeeTierConfig",
+          type: "function",
+          inputs: [
+            {
+              name: "tierId",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "tierConfig",
+              type: "tuple",
+              components: [
+                {
+                  name: "volumeThreshold",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tierName",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct FeeTierConfig"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getFeeTierCount",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "count",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getUserFeeTier",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "tier",
+              type: "tuple",
+              components: [
+                {
+                  name: "tierId",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "lastUpdated",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct FeeTier"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getUserVIPStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "vipData",
+              type: "tuple",
+              components: [
+                {
+                  name: "isVIP",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "vipDiscountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "vipExpiryTimestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "vipTier",
+                  type: "string",
+                  internalType: "string"
+                }
+              ],
+              internalType: "struct VIPStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getUserVolumeData",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "volumeData",
+              type: "tuple",
+              components: [
+                {
+                  name: "totalVolume",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "last30DaysVolume",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "lastTradeTimestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tradeCount",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct UserVolumeData"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setCollectionFeeOverride",
+          type: "function",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "feeOverride",
+              type: "tuple",
+              components: [
+                {
+                  name: "makerFeeOverride",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "takerFeeOverride",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "hasOverride",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "isVerified",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "setAt",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct CollectionFeeOverride"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "totalMarketplaceVolume",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "unpause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateBaseFeeConfig",
+          type: "function",
+          inputs: [
+            {
+              name: "newConfig",
+              type: "tuple",
+              components: [
+                {
+                  name: "makerFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "takerFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "listingFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "auctionFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "bundleFee",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct FeeConfig"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateFeeRecipient",
+          type: "function",
+          inputs: [
+            {
+              name: "newFeeRecipient",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateFeeTier",
+          type: "function",
+          inputs: [
+            {
+              name: "tierId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "tierConfig",
+              type: "tuple",
+              components: [
+                {
+                  name: "volumeThreshold",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "discountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tierName",
+                  type: "string",
+                  internalType: "string"
+                },
+                {
+                  name: "isActive",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct FeeTierConfig"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateUserVolume",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tradeVolume",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateVIPStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "vipData",
+              type: "tuple",
+              components: [
+                {
+                  name: "isVIP",
+                  type: "bool",
+                  internalType: "bool"
+                },
+                {
+                  name: "vipDiscountBps",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "vipExpiryTimestamp",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "vipTier",
+                  type: "string",
+                  internalType: "string"
+                }
+              ],
+              internalType: "struct VIPStatus"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "userFeeTiers",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "tierId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "discountBps",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "lastUpdated",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "userVolumeData",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "totalVolume",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "last30DaysVolume",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "lastTradeTimestamp",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "tradeCount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "vipStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "isVIP",
+              type: "bool",
+              internalType: "bool"
+            },
+            {
+              name: "vipDiscountBps",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "vipExpiryTimestamp",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "vipTier",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "CollectionFeeOverrideSet",
+          type: "event",
+          inputs: [
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "makerFeeOverride",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "takerFeeOverride",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "discountBps",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "isVerified",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "FeeConfigUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "oldMakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newMakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "oldTakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newTakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "updatedBy",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "FeeTierUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "oldTierId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newTierId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newDiscountBps",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "FeeUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "feeType",
+              type: "string",
+              indexed: true,
+              internalType: "string"
+            },
+            {
+              name: "oldValue",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newValue",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "updatedBy",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "FeesCalculated",
+          type: "event",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "salePrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "finalMakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "finalTakerFee",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "totalDiscount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Unpaused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "UserVolumeUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newTotalVolume",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newLast30DaysVolume",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "tradeCount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "VIPStatusUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "isVIP",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "discountBps",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "expiryTimestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "vipTier",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Fee__InvalidOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Fee__InvalidRoyaltyFee",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+    },
+    auctionregistry_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "admin",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "DEFAULT_ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllAuctions",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "types",
+              type: "uint8[]",
+              internalType: "enum IAuctionRegistry.AuctionType[]"
+            },
+            {
+              name: "contracts",
+              type: "address[]",
+              internalType: "address[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuctionContract",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionType",
+              type: "uint8",
+              internalType: "enum IAuctionRegistry.AuctionType"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuctionFactory",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoleAdmin",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "grantRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "hasRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isRegisteredAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionContract",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "registerAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionType",
+              type: "uint8",
+              internalType: "enum IAuctionRegistry.AuctionType"
+            },
+            {
+              name: "auctionContract",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "renounceRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "callerConfirmation",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "revokeRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "updateAuctionFactory",
+          type: "function",
+          inputs: [
+            {
+              name: "newFactory",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "AuctionFactoryUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "oldFactory",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "newFactory",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionRegistered",
+          type: "event",
+          inputs: [
+            {
+              name: "auctionType",
+              type: "uint8",
+              indexed: true,
+              internalType: "enum IAuctionRegistry.AuctionType"
+            },
+            {
+              name: "auctionContract",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleAdminChanged",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "previousAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "newAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleGranted",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleRevoked",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AccessControlBadConfirmation",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AccessControlUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "neededRole",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ]
+        },
+        {
+          name: "AuctionRegistry__AuctionAlreadyRegistered",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AuctionRegistry__AuctionNotRegistered",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AuctionRegistry__FactoryNotSet",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AuctionRegistry__ZeroAddress",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0x4a679253410272dd5232b3ff7cf5dbb88f295319"
+    },
+    bundlemanager_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_accessControl",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_feeManager",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "MAX_BUNDLE_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "MAX_NFTS_PER_BUNDLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "MIN_BUNDLE_DURATION",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "accessControl",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract MarketplaceAccessControl"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "allBundles",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bundleCounter",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bundleItems",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "tokenType",
+              type: "uint8",
+              internalType: "enum BundleManager.TokenType"
+            },
+            {
+              name: "isIncluded",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bundleMetadata",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "buyer",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "description",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "imageUrl",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bundleTiming",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "startTime",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "endTime",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "createdAt",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "soldAt",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "bundles",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "totalPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "discountPercentage",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "status",
+              type: "uint8",
+              internalType: "enum BundleManager.BundleStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "cancelBundle",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "reason",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "createBundle",
+          type: "function",
+          inputs: [
+            {
+              name: "items",
+              type: "tuple[]",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "tokenType",
+                  type: "uint8",
+                  internalType: "enum BundleManager.TokenType"
+                },
+                {
+                  name: "isIncluded",
+                  type: "bool",
+                  internalType: "bool"
+                }
+              ],
+              internalType: "struct BundleManager.BundleItem[]"
+            },
+            {
+              name: "totalPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "discountPercentage",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "paymentToken",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "endTime",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "description",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "imageUrl",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "feeManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract AdvancedFeeManager"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getActiveBundles",
+          type: "function",
+          inputs: [
+            {
+              name: "offset",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "limit",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundleBasicInfo",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum BundleManager.BundleStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundleMetadata",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "",
+              type: "string",
+              internalType: "string"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundlePrice",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundleSeller",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundleStatus",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum BundleManager.BundleStatus"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getBundleTimingInfo",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getUserBundles",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "onERC1155BatchReceived",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "",
+              type: "bytes",
+              internalType: "bytes"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          stateMutability: "pure"
+        },
+        {
+          name: "onERC1155Received",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "",
+              type: "bytes",
+              internalType: "bytes"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          stateMutability: "pure"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "pause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "purchaseBundle",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "totalBundlesCreated",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "totalBundlesSold",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "unpause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "updateBundlePrice",
+          type: "function",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "newPrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "userBundles",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "BundleCancelled",
+          type: "event",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "reason",
+              type: "string",
+              indexed: false,
+              internalType: "string"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "BundleCreated",
+          type: "event",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "itemCount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "totalPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "discountPercentage",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "BundleItemRemoved",
+          type: "event",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "collection",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "BundleSold",
+          type: "event",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "buyer",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "totalPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "itemCount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "BundleUpdated",
+          type: "event",
+          inputs: [
+            {
+              name: "bundleId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "oldPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "newPrice",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Unpaused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__AmountMustBeGreaterThanZero",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__DurationMustBeGreaterThanZero",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InsufficientBalance",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__InsufficientPayment",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__ListingExpired",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NFTNotActive",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__NotTheOwner",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "NFTExchange__PriceMustBeGreaterThanZero",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "SafeERC20FailedOperation",
+          type: "error",
+          inputs: [
+            {
+              name: "token",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        }
+      ],
+      address: "0x3aa5ebb10dc797cac828524e59a333d0a371443c"
+    },
+    auctionfactory_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_marketplaceWallet",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_englishAuctionImpl",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_dutchAuctionImpl",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "allAuctionIds",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "auctionToContract",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "batchCancelAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          outputs: [
+            {
+              name: "cancelledCount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "batchCreateDutchAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenIds",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "amounts",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "priceDropPerHour",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "batchCreateEnglishAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenIds",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "amounts",
+              type: "uint256[]",
+              internalType: "uint256[]"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "buyNow",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "cancelAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "createDutchAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "priceDropPerHour",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "createEnglishAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "startPrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "reservePrice",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "duration",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "dutchAuction",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "contract DutchAuctionImplementation"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "dutchAuctionImplementation",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "englishAuction",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "contract EnglishAuctionImplementation"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "englishAuctionImplementation",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllAuctions",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "auction",
+              type: "tuple",
+              components: [
+                {
+                  name: "auctionId",
+                  type: "bytes32",
+                  internalType: "bytes32"
+                },
+                {
+                  name: "nftContract",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "seller",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "startPrice",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "reservePrice",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "startTime",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "endTime",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "status",
+                  type: "uint8",
+                  internalType: "enum AuctionStatus"
+                },
+                {
+                  name: "auctionType",
+                  type: "uint8",
+                  internalType: "enum AuctionType"
+                },
+                {
+                  name: "highestBidder",
+                  type: "address",
+                  internalType: "address"
+                },
+                {
+                  name: "highestBid",
+                  type: "uint256",
+                  internalType: "uint256"
+                },
+                {
+                  name: "bidCount",
+                  type: "uint256",
+                  internalType: "uint256"
+                }
+              ],
+              internalType: "struct IAuction.Auction"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAuctionContract",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getCurrentPrice",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "currentPrice",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getPendingRefund",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "bidder",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "refundAmount",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getTimeToReservePrice",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getUserAuctions",
+          type: "function",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "auctionIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "isAuctionActive",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "isActive",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "marketplaceValidator",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IMarketplaceValidator"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "marketplaceWallet",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "owner",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "paused",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "placeBid",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "payable"
+        },
+        {
+          name: "renounceOwnership",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMarketplaceValidator",
+          type: "function",
+          inputs: [
+            {
+              name: "validator",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setMarketplaceWallet",
+          type: "function",
+          inputs: [
+            {
+              name: "newWallet",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setPaused",
+          type: "function",
+          inputs: [
+            {
+              name: "paused",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "settleAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "transferNFTFromSeller",
+          type: "function",
+          inputs: [
+            {
+              name: "nftContract",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "from",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "transferOwnership",
+          type: "function",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "userAuctions",
+          type: "function",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "withdrawBid",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "AuctionCreatedViaFactory",
+          type: "event",
+          inputs: [
+            {
+              name: "auctionId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "auctionContract",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "seller",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "auctionType",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum AuctionType"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionFactoryPaused",
+          type: "event",
+          inputs: [
+            {
+              name: "isPaused",
+              type: "bool",
+              indexed: false,
+              internalType: "bool"
+            },
+            {
+              name: "admin",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AuctionImplementationsDeployed",
+          type: "event",
+          inputs: [
+            {
+              name: "englishAuctionImplementation",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "dutchAuctionImplementation",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "marketplaceWallet",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "OwnershipTransferred",
+          type: "event",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Paused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Unpaused",
+          type: "event",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "Auction__AuctionNotFound",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTAlreadyInAuction",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTAlreadyListed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTNotAvailable",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NFTTransferFailed",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__NotAuctionSeller",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__UnsupportedAuctionType",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "Auction__ZeroAddress",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "EnforcedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "ExpectedPause",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "FailedDeployment",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "InsufficientBalance",
+          type: "error",
+          inputs: [
+            {
+              name: "balance",
+              type: "uint256",
+              internalType: "uint256"
+            },
+            {
+              name: "needed",
+              type: "uint256",
+              internalType: "uint256"
+            }
+          ]
+        },
+        {
+          name: "OwnableInvalidOwner",
+          type: "error",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "OwnableUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ]
+        },
+        {
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+          inputs: []
+        }
+      ],
+      address: "0x9a9f2ccfde556a7e9ff0848998aa4a0cfd8863ae"
+    },
+    adminhub_anvil: {
+      chain: "anvil",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "admin",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_exchangeRegistry",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_collectionRegistry",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_feeRegistry",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_auctionRegistry",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "DEFAULT_ADMIN_ROLE",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "accessControl",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "auctionRegistry",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IAuctionRegistry"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "collectionRegistry",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract ICollectionRegistry"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "configManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "emergencyManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "emergencyPause",
+          type: "function",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "exchangeRegistry",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IExchangeRegistry"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "feeRegistry",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IFeeRegistry"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getAllRegistries",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "exchange",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "collection",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "fee",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "auction",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getManagementContracts",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "getRoleAdmin",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "grantRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "hasRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "historyTracker",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "listingValidator",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "registerAuction",
+          type: "function",
+          inputs: [
+            {
+              name: "auctionType",
+              type: "uint8",
+              internalType: "enum IAuctionRegistry.AuctionType"
+            },
+            {
+              name: "auction",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "registerCollectionFactory",
+          type: "function",
+          inputs: [
+            {
+              name: "tokenType",
+              type: "string",
+              internalType: "string"
+            },
+            {
+              name: "factory",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "registerExchange",
+          type: "function",
+          inputs: [
+            {
+              name: "standard",
+              type: "uint8",
+              internalType: "enum IExchangeRegistry.TokenStandard"
+            },
+            {
+              name: "exchange",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "renounceRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "callerConfirmation",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "revokeRole",
+          type: "function",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "roleManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "setAdditionalContracts",
+          type: "function",
+          inputs: [
+            {
+              name: "_listingValidator",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_emergencyManager",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_accessControl",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_historyTracker",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "setManagementContracts",
+          type: "function",
+          inputs: [
+            {
+              name: "_roleManager",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_upgradeManager",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "_configManager",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "supportsInterface",
+          type: "function",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4"
+            }
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "updateAuctionFactory",
+          type: "function",
+          inputs: [
+            {
+              name: "factory",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          outputs: [],
+          stateMutability: "nonpayable"
+        },
+        {
+          name: "upgradeManager",
+          type: "function",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address"
+            }
+          ],
+          stateMutability: "view"
+        },
+        {
+          name: "ContractsConfigured",
+          type: "event",
+          inputs: [
+            {
+              name: "listingValidator",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "emergencyManager",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "accessControl",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            },
+            {
+              name: "historyTracker",
+              type: "address",
+              indexed: false,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleAdminChanged",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "previousAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "newAdminRole",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleGranted",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "RoleRevoked",
+          type: "event",
+          inputs: [
+            {
+              name: "role",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32"
+            },
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            },
+            {
+              name: "sender",
+              type: "address",
+              indexed: true,
+              internalType: "address"
+            }
+          ],
+          anonymous: false
+        },
+        {
+          name: "AccessControlBadConfirmation",
+          type: "error",
+          inputs: []
+        },
+        {
+          name: "AccessControlUnauthorizedAccount",
+          type: "error",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address"
+            },
+            {
+              name: "neededRole",
+              type: "bytes32",
+              internalType: "bytes32"
+            }
+          ]
+        }
+      ],
+      address: "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
     }
   },
 });
