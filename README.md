@@ -155,9 +155,10 @@ LIMIT 50
 ## 📋 Prerequisites
 
 - **Node.js** >= 18.14
-- **npm** or **pnpm** or **yarn**
-- **PostgreSQL** >= 14 (optional - Ponder includes built-in PGlite)
-- **Anvil** (for local development and testing)
+- **pnpm** >= 8 (recommended, pinned to `pnpm@8.15.0` via `packageManager`)
+- **Docker + Docker Compose** (recommended for local Postgres + Anvil)
+- **PostgreSQL** >= 14 (optional — Ponder ships with built-in PGlite)
+- **Anvil** (Foundry) for local EVM testing — also available via the bundled docker-compose
 
 ## 🚀 Quick Start
 
@@ -166,8 +167,35 @@ LIMIT 50
 ```bash
 git clone https://github.com/ZunoKit/zuno-marketplace-indexer.git
 cd zuno-marketplace-indexer
-npm install
+pnpm install
 ```
+
+### 1b. (Optional) Start local Postgres + Anvil with Docker
+
+A `docker-compose.yml` is included that brings up:
+
+- `indexer-postgres` — Postgres 16 on `localhost:5437` (db `zuno_indexer`, user/pass `zuno_user`/`zuno_pass`).
+- `indexer-anvil` — Foundry Anvil on `localhost:8545`, chain id `31337`, 2s block time.
+
+```bash
+# Just the deps (recommended; run the indexer on host with pnpm dev)
+docker compose up -d postgres anvil
+
+# Or also run the indexer itself in a container
+docker compose --profile app up -d
+
+# Stop / wipe
+docker compose down
+docker compose down -v   # also remove volumes
+```
+
+When you use the Postgres service, point Ponder at it via:
+
+```bash
+DATABASE_URL=postgresql://zuno_user:zuno_pass@localhost:5437/zuno_indexer
+```
+
+(If you skip this, Ponder falls back to embedded PGlite.)
 
 ### 2. Configure Environment Variables
 
