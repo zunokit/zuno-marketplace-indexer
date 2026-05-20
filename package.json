@@ -11,7 +11,7 @@
     "db": "ponder db",
     "codegen": "ponder codegen",
     "serve": "ponder serve",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc",
     "generate-config": "tsx scripts/generate-config.ts",
     "test": "jest --config tests/setup/jest.config.js",

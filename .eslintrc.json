@@ -1,3 +1,13 @@
 {
-  "extends": "ponder"
+  "extends": "ponder",
+  "ignorePatterns": [
+    "node_modules",
+    ".ponder",
+    "generated",
+    "coverage",
+    "dist",
+    "build",
+    "tests/setup/jest.config.js",
+    "tests/setup/jest.env.js"
+  ]
 }

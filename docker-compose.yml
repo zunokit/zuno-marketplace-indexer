@@ -1,0 +1,79 @@
+# Local development infrastructure for zuno-marketplace-indexer.
+#
+# Brings up:
+#   * postgres  - optional Postgres backend for Ponder (default: embedded PGlite)
+#   * anvil     - local EVM node (chain id 31337) for `PONDER_RPC_URL_31337`
+#
+# The indexer itself runs on the host with `pnpm dev` (faster reload, easier
+# Ponder devtools access). An opt-in `app` service is provided below.
+#
+# Usage:
+#   docker compose up -d postgres anvil        # just the deps
+#   docker compose up -d                       # everything except app
+#   docker compose --profile app up -d         # also run indexer in container
+#   docker compose down                        # stop
+#   docker compose down -v                     # stop and wipe volumes
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: indexer-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zuno_user
+      POSTGRES_PASSWORD: zuno_pass
+      POSTGRES_DB: zuno_indexer
+    ports:
+      - "5437:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zuno_user -d zuno_indexer"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Local EVM node for chain id 31337. Matches the default
+  # PONDER_RPC_URL_31337=http://127.0.0.1:8545 in .env.example.
+  # Uses ghcr.io/foundry-rs/foundry which ships `anvil`.
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: indexer-anvil
+    restart: unless-stopped
+    entrypoint: ["anvil"]
+    command:
+      - "--host"
+      - "0.0.0.0"
+      - "--chain-id"
+      - "31337"
+      - "--block-time"
+      - "2"
+    ports:
+      - "8545:8545"
+
+  # Opt-in: run the indexer itself in a container.
+  # Enable with `docker compose --profile app up -d`.
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: indexer-app
+    profiles: ["app"]
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://zuno_user:zuno_pass@postgres:5432/zuno_indexer
+      PONDER_RPC_URL_31337: http://anvil:8545
+    ports:
+      - "42069:42069"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      anvil:
+        condition: service_started
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
