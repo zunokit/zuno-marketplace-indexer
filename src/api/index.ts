@@ -23,6 +23,7 @@ import {
   optionalAuthMiddleware,
 } from "./middleware";
 import { serializeBigInts } from "@/shared/utils/helpers";
+import { computeCollectionStats } from "@/shared/utils/collection-stats";
 
 const app = new Hono();
 
@@ -145,6 +146,63 @@ app.get("/api/activity", async (c) => {
   } catch (error) {
     console.error('Activity API error:', error);
     return c.json({ error: "Failed to fetch activity" }, 500);
+  }
+});
+
+/**
+ * Aggregated stats for a single collection.
+ *
+ * GET /api/collections/:address/stats?topN=10
+ *
+ * Returns:
+ *   {
+ *     totalEvents, uniqueParticipants,
+ *     eventsByCategory, eventsByType,
+ *     topActors: [{ actor, count }],
+ *     activity: { last24h, last7d, last30d }
+ *   }
+ *
+ * The aggregation is done in-process by `computeCollectionStats` so it
+ * stays testable in isolation (see tests/unit/shared/utils/collection-stats.test.ts).
+ */
+app.get("/api/collections/:address/stats", async (c) => {
+  try {
+    const address = c.req.param("address").toLowerCase() as `0x${string}`;
+    const topN = Math.min(
+      Math.max(parseInt(c.req.query("topN") || "10", 10), 1),
+      100,
+    );
+
+    // Fetch all events for the collection. The event table is indexed by
+    // (collection, blockTimestamp) so this is a single index scan.
+    const events = await db
+      .select()
+      .from(schema.event)
+      .where(eq(schema.event.collection, address))
+      .orderBy(desc(schema.event.blockTimestamp))
+      .limit(10_000); // hard cap — stats are statistical, not exhaustive
+
+    const stats = computeCollectionStats(
+      events.map((e) => ({
+        eventType: e.eventType,
+        category: e.category,
+        actor: e.actor,
+        counterparty: e.counterparty ?? null,
+        blockTimestamp: e.blockTimestamp,
+      })),
+      { topN },
+    );
+
+    return c.json(
+      serializeBigInts({
+        success: true,
+        collection: address,
+        data: stats,
+      }),
+    );
+  } catch (error) {
+    console.error("Collection stats API error:", error);
+    return c.json({ error: "Failed to fetch collection stats" }, 500);
   }
 });
 
