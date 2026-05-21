@@ -22,6 +22,7 @@ import {
   rateLimitMiddleware,
   optionalAuthMiddleware,
 } from "./middleware";
+import { transfersApi } from "./transfers";
 import { serializeBigInts } from "@/shared/utils/helpers";
 
 const app = new Hono();
@@ -156,6 +157,9 @@ app.get("/api/activity", async (c) => {
 app.get("/graphql", (c) => {
   return c.text("GraphQL endpoint available at /graphql (POST)");
 });
+
+// Mount /api/transfers/* read endpoints.
+app.route("/", transfersApi);
 
 // ============================================================================
 // Export
